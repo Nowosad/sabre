@@ -1,7 +1,7 @@
 #' SABRE calculation
 #'
-#' It calculate the Spatial Association Between REgionalizations (SABRE) based
-#' on the output of the [spatial_prep()] function.
+#' It calculate the Spatial Association Between REgionalizations (SABRE) using
+#' the output of the [spatial_prep()] function.
 #'
 #' @param x An output of the [spatial_prep()] function
 #' @param unit A logarithm base ("log", "log2" or "log10")
