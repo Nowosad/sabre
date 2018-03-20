@@ -1,8 +1,15 @@
 Package: sabre
 Version: 0.0.0.9000
-Title: What the Package Does (One Line, Title Case)
+Title: Spatial Association Between REgionalizations 
 Description: What the package does (one paragraph).
-Authors@R: person("First", "Last", , "first.last@example.com", c("aut", "cre"))
+Authors@R: c(person("Jakub", "Nowosad", 
+    email = "nowosad.jakub@gmail.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-1057-3721")),
+    person("Tomasz", "Stepinski",
+    role = c("aut")),
+    person("Space Informatics Lab", role = c("cph"))
+    )
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
