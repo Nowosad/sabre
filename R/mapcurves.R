@@ -14,6 +14,8 @@
 #' "Mapcurves: a quantitative method for comparing categorical maps."
 #' Journal of Geographical Systems 8.2 (2006): 187.
 #'
+#' @importFrom utils head tail
+#'
 #' @examples
 #' # EXAMPLES
 #'
@@ -59,7 +61,6 @@ mapcurves = function(x, y, z = NULL){
         result = list(map = map, gof = gof)
         return(result)
 }
-
 area_under_curve = function(x, y){
         sum(diff(x) * (head(y, -1) + tail(y, -1))) / 2
 }

@@ -17,6 +17,8 @@
 #' of the 2007 joint conference on empirical methods in natural language
 #' processing and computational natural language learning (EMNLP-CoNLL). 2007.
 #'
+#' @importFrom entropy entropy.empirical mi.empirical
+#'
 #' @examples
 #' # EXAMPLES
 #'
