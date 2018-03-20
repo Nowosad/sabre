@@ -1,6 +1,6 @@
 #' Mapcurves
 #'
-#' Mapcurves: a quantitative method for comparing categorical maps
+#' Mapcurves: a quantitative method for comparing categorical maps.
 #'
 #' @param x A numeric vector of counts
 #' @param y A numeric vector of counts
