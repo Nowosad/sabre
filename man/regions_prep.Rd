@@ -7,7 +7,7 @@
 regions_prep(x, y, x_name, y_name)
 }
 \arguments{
-\item{x}{An output of the \code{\link[=spatial_prep]{spatial_prep()}} function}
+\item{x}{DESC}
 
 \item{y}{DESC}
 

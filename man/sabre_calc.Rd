@@ -7,7 +7,7 @@
 sabre_calc(x, unit = "log2", B = 1)
 }
 \arguments{
-\item{x}{An output of the \code{\link[=spatial_prep]{spatial_prep()}} function}
+\item{x}{An output of the \code{\link[=regions_prep]{regions_prep()}} function}
 
 \item{unit}{A logarithm base ("log", "log2" or "log10")}
 
@@ -18,7 +18,7 @@ A list
 }
 \description{
 It calculate the Spatial Association Between REgionalizations (SABRE) using
-the output of the \code{\link[=spatial_prep]{spatial_prep()}} function.
+the output of the \code{\link[=regions_prep]{regions_prep()}} function.
 }
 \details{
 DETAILS

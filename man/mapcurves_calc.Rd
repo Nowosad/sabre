@@ -7,14 +7,14 @@
 mapcurves_calc(x)
 }
 \arguments{
-\item{x}{An output of the \code{\link[=spatial_prep]{spatial_prep()}} function}
+\item{x}{An output of the \code{\link[=regions_prep]{regions_prep()}} function}
 }
 \value{
 A list
 }
 \description{
 It calculate the Mapcurves's goodness-of-fit (GOF) using
-the output of the \code{\link[=spatial_prep]{spatial_prep()}} function.
+the output of the \code{\link[=regions_prep]{regions_prep()}} function.
 }
 \details{
 DETAILS
