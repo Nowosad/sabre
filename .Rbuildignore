@@ -1,2 +1,8 @@
 ^sabre\.Rproj$
 ^\.Rproj\.user$
+^\.travis\.yml$
+^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^LICENSE\.md$
+^codecov\.yml$
