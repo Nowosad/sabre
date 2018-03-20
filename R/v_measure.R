@@ -1,6 +1,6 @@
 #' V-measure
 #'
-#' A conditional entropy-based external cluster evaluation measure
+#' A conditional entropy-based external cluster evaluation measure.
 #'
 #' @param x A numeric vector of counts
 #' @param y A numeric vector of counts
