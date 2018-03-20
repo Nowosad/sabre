@@ -1,9 +1,9 @@
 #' Mapcurves calculation
 #'
 #' It calculate the Mapcurves's goodness-of-fit (GOF) using
-#' the output of the [spatial_prep()] function.
+#' the output of the [regions_prep()] function.
 #'
-#' @param x An output of the [spatial_prep()] function
+#' @param x An output of the [regions_prep()] function
 #'
 #' @return A list
 #'
@@ -22,13 +22,10 @@ mapcurves_calc = function(x){
         x[[2]]$area = as.numeric(st_area(x[[2]]))
 
         # crosstable of categories
-        x_name = names(x[[1]])[2]
-        y_name = names(x[[2]])[2]
+        x_name = names(x[[1]])[1]
+        y_name = names(x[[2]])[1]
 
-        xy_values_freq = st_set_geometry(x[[3]], NULL)[c("area", x_name, y_name)] %>%
-                tidyr::spread(x_name, "area", fill = 0) %>%
-                .[-1] %>%
-                as.matrix()
+        xy_values_freq = area_spread(x[[3]], x_name, y_name)
 
         z = xy_values_freq^2 / tcrossprod(rowSums(xy_values_freq), colSums(xy_values_freq))
 
