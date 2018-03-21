@@ -3,7 +3,10 @@
 #' It calculate the Spatial Association Between REgionalizations (SABRE) using
 #' the output of the [regions_prep()] function.
 #'
-#' @param x An output of the [regions_prep()] function
+#' @param y DESC
+#' @param x DESC
+#' @param x_name DESC
+#' @param y_name DESC
 #' @param unit A logarithm base ("log", "log2" or "log10")
 #' @param B DESC
 #'
@@ -22,21 +25,30 @@
 #' # EXAMPLES
 #'
 #' @export
-sabre_calc = function(x, unit = "log2", B = 1){
-        x[[1]]$area = as.numeric(st_area(x[[1]]))
-        x[[2]]$area = as.numeric(st_area(x[[2]]))
+sabre_calc = function(x, y, x_name, y_name, unit = "log2", B = 1){
 
-        x_name = names(x[[1]])[1]
-        y_name = names(x[[2]])[1]
+  z_df = intersection_prep(x = x, y = y, x_name = x_name, y_name = y_name)
 
-        xy_values_freq = area_spread(x[[3]], name1 = x_name, name2 = y_name)
+  x_df = x %>%
+    mutate(area = as.numeric(st_area(.))) %>%
+    st_set_geometry(NULL) %>%
+    group_by(SECTION) %>%
+    summarise(area = sum(area)) %>%
+    na.omit()
 
-        x[[1]]$entropy = apply(xy_values_freq, 2, entropy.empirical, unit = unit) /
-          entropy.empirical(colSums(xy_values_freq), unit = unit) # next divide by entropy of a row var
-        x[[2]]$entropy = apply(xy_values_freq, 1, entropy.empirical, unit = unit) /
-          entropy.empirical(rowSums(xy_values_freq), unit = unit) # next divide by entropy of a col var
+  y_df = y %>%
+    mutate(area = as.numeric(st_area(.))) %>%
+    st_set_geometry(NULL) %>%
+    group_by(ECO_NAME) %>%
+    summarise(area = sum(area)) %>%
+    na.omit()
 
-        v_result = v_measure(x[[1]]$area, x[[2]]$area, xy_values_freq, unit = unit, B = B)
-        sabre_result = list(x[[1]], x[[2]], v_result)
-        return(sabre_result)
+  # x$entropy = apply(z_df, 2, entropy.empirical, unit = unit) /
+  #   entropy.empirical(colSums(xy_values_freq), unit = unit) # next divide by entropy of a row var
+  # y$entropy = apply(z_df, 1, entropy.empirical, unit = unit) /
+  #   entropy.empirical(rowSums(xy_values_freq), unit = unit) # next divide by entropy of a col var
+
+  v_result = v_measure(x = x_df$area, y = y_df$area, z = z_df, unit = unit, B = B)
+  sabre_result = list(x, y, v_result)
+  return(sabre_result)
 }
