@@ -1,4 +1,4 @@
-# library(testthat)
-# library(sabre)
-#
-# test_check("sabre")
+library(testthat)
+library(sabre)
+
+test_check("sabre")

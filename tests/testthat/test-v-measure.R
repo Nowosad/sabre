@@ -1,0 +1,26 @@
+context("test-v-measure.R")
+
+# Examples from Firuge 2 of
+# Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
+# A conditional entropy-based external cluster evaluation measure." Proceedings
+# of the 2007 joint conference on empirical methods in natural language
+# processing and computational natural language learning (EMNLP-CoNLL). 2007.
+
+solution_a = list(x = c(1, 1, 1, 2, 3, 3, 3, 3, 1, 2, 2, 2, 2, 1, 3),
+                  y = c(rep(1, 5), rep(2, 5), rep(3, 5)))
+
+solution_b = list(x = c(1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 3, 3),
+                  y = c(rep(1, 5), rep(2, 5), rep(3, 5)))
+
+solution_c = list(x = c(1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 3, 3, 1, 2, 3, 1, 2, 3),
+                  y = c(rep(1, 5), rep(2, 5), rep(3, 5), rep(4, 2), rep(5, 2), rep(6, 2)))
+
+solution_d = list(x = c(1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 3, 3, 1, 2, 3, 1, 2, 3),
+                  y = c(rep(1, 5), rep(2, 5), rep(3, 5), 4, 5, 6, 7, 8, 9))
+
+test_that("multiplication works", {
+  expect_equal(v_measure(solution_a$x, solution_a$y)$vmeasure, 0.14, tolerance = 3)
+  expect_equal(v_measure(solution_b$x, solution_b$y)$vmeasure, 0.39, tolerance = 3)
+  expect_equal(v_measure(solution_c$x, solution_c$y)$vmeasure, 0.30, tolerance = 3)
+  expect_equal(v_measure(solution_d$x, solution_d$y)$vmeasure, 0.41, tolerance = 3)
+})
