@@ -43,10 +43,10 @@ sabre_calc = function(x, y, x_name, y_name, unit = "log2", B = 1){
     summarise(area = sum(area)) %>%
     na.omit()
 
-  # x$entropy = apply(z_df, 2, entropy.empirical, unit = unit) /
-  #   entropy.empirical(colSums(xy_values_freq), unit = unit) # next divide by entropy of a row var
-  # y$entropy = apply(z_df, 1, entropy.empirical, unit = unit) /
-  #   entropy.empirical(rowSums(xy_values_freq), unit = unit) # next divide by entropy of a col var
+  # x_df$entropy = apply(z_df, 2, entropy.empirical, unit = unit) /
+  #   entropy.empirical(colSums(z_df), unit = unit) # next divide by entropy of a row var
+  # y_df$entropy = apply(z_df, 1, entropy.empirical, unit = unit) /
+  #   entropy.empirical(rowSums(z_df), unit = unit) # next divide by entropy of a col var
 
   v_result = v_measure(x = x_df$area, y = y_df$area, z = z_df, unit = unit, B = B)
   sabre_result = list(x, y, v_result)
