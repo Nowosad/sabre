@@ -24,8 +24,8 @@
 #'
 #' @export
 v_measure = function(x, y, z = NULL, unit = "log2", B = 1){
-  entropy_x = entropy.empirical(table(x)/length(x), unit = unit)
-  entropy_y = entropy.empirical(table(y)/length(y), unit = unit)
+  entropy_x = entropy.empirical(x / length(x), unit = unit)
+  entropy_y = entropy.empirical(y / length(y), unit = unit)
   if (is.null(z)){
     mi_xy = mi.empirical(table(x, y), unit = unit)
   } else {
