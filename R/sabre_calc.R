@@ -26,7 +26,6 @@
 #' # EXAMPLES
 #'
 #' @export
-
 sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
 
   suppressWarnings({z = st_intersection(x, y)})

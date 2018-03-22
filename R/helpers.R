@@ -20,7 +20,7 @@ intersection_prep = function(z, x_name, y_name){
 vector_regions = function(vector_obj, attr_name){
   attr_name = enquo(attr_name)
   # vector_obj = select(vector_obj, !!attr_name)
-  unique_classes = vector_obj %>% pull(attr_name) %>% unique()
+  unique_classes = vector_obj %>% pull(!!attr_name) %>% unique()
   if (nrow(vector_obj) == length(unique_classes)){
     return(vector_obj)
   } else {
