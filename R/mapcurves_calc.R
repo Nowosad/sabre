@@ -23,6 +23,10 @@
 #'
 #' @export
 mapcurves_calc = function(x, x_name, y, y_name){
+
+  x = st_set_precision(x, 1)
+  y = st_set_precision(y, 1)
+
   suppressWarnings({z = st_intersection(x, y)})
 
   z_df = intersection_prep(z, !!enquo(x_name), !!enquo(y_name))

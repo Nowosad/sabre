@@ -32,7 +32,6 @@ sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
   y = st_set_precision(y, 1)
 
   suppressWarnings({z = st_intersection(x, y)})
-  z = st_cast(z, "MULTIPOLYGON")
 
   x = vector_regions(z, !!enquo(x_name))
   y = vector_regions(z, !!enquo(y_name))
