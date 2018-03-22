@@ -1,12 +1,15 @@
 #' @importFrom sf st_intersection st_area
 intersection_prep = function(z, x_name, y_name){
+  x_name = enquo(x_name)
+  y_name = enquo(y_name)
+
   result = z %>%
     mutate(area = as.numeric(st_area(.))) %>%
     st_set_geometry(NULL) %>%
-    group_by(SECTION, ECO_NAME) %>%
+    group_by(!!x_name, !!y_name) %>%
     summarise(area = sum(area)) %>%
     na.omit() %>%
-    spread(SECTION, area, fill = 0) %>%
+    spread(!!x_name, area, fill = 0) %>%
     .[-1] %>%
     as.matrix()
 
@@ -15,25 +18,25 @@ intersection_prep = function(z, x_name, y_name){
 
 #' @importFrom stats aggregate
 vector_regions = function(vector_obj, attr_name){
-  vector_obj = vector_obj[attr_name]
-  unique_classes = unique(vector_obj[[attr_name]])
+  attr_name = enquo(attr_name)
+  # vector_obj = select(vector_obj, !!attr_name)
+  unique_classes = vector_obj %>% pull(attr_name) %>% unique()
   if (nrow(vector_obj) == length(unique_classes)){
     return(vector_obj)
   } else {
-    # to dplyr
-    vector_obj = aggregate(vector_obj, by = list(g = vector_obj[[attr_name]]),
-                           FUN = function(x) x[1], do_union = FALSE)
-    # vector_obj = st_cast(vector_obj, "MULTIPOLYGON")
-    vector_obj = vector_obj[attr_name]
+    vector_obj = vector_obj %>%
+      group_by(!!attr_name) %>%
+      summarise(do_union = FALSE)
     return(vector_obj)
   }
 }
 
 regions_prep = function(vector_obj, attr_name){
+  attr_name = enquo(attr_name)
   vector_obj %>%
     mutate(area = as.numeric(st_area(.))) %>%
     st_set_geometry(NULL) %>%
-    group_by(SECTION) %>%
+    group_by(!!attr_name) %>%
     summarise(area = sum(area)) %>%
     na.omit()
 }

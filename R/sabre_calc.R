@@ -4,8 +4,8 @@
 #' the output of the [regions_prep()] function.
 #'
 #' @param y DESC
-#' @param x DESC
 #' @param x_name DESC
+#' @param x DESC
 #' @param y_name DESC
 #' @param unit A logarithm base ("log", "log2" or "log10")
 #' @param B DESC
@@ -27,15 +27,15 @@
 #'
 #' @export
 
-sabre_calc = function(x, y, x_name, y_name, unit = "log2", B = 1){
+sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
 
   suppressWarnings({z = st_intersection(x, y)})
-  x = vector_regions(z, x_name)
-  y = vector_regions(z, y_name)
+  x = vector_regions(z, !!enquo(x_name))
+  y = vector_regions(z, !!enquo(y_name))
 
-  z_df = intersection_prep(z, x_name = x_name, y_name = y_name)
-  x_df = regions_prep(x, x_name)
-  y_df = regions_prep(y, y_name)
+  z_df = intersection_prep(z, !!enquo(x_name), !!enquo(y_name))
+  x_df = regions_prep(x, !!enquo(x_name))
+  y_df = regions_prep(y, !!enquo(y_name))
 
   # x_df$entropy = apply(z_df, 2, entropy.empirical, unit = unit) /
   #   entropy.empirical(colSums(z_df), unit = unit) # next divide by entropy of a row var
@@ -46,3 +46,4 @@ sabre_calc = function(x, y, x_name, y_name, unit = "log2", B = 1){
   sabre_result = list(x, y, v_result)
   return(sabre_result)
 }
+
