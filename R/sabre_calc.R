@@ -20,28 +20,22 @@
 #' processing and computational natural language learning (EMNLP-CoNLL). 2007.
 #'
 #' @importFrom entropy entropy.empirical
+#' @importFrom sf st_intersection st_area
 #'
 #' @examples
 #' # EXAMPLES
 #'
 #' @export
+
 sabre_calc = function(x, y, x_name, y_name, unit = "log2", B = 1){
 
-  z_df = intersection_prep(x = x, y = y, x_name = x_name, y_name = y_name)
+  suppressWarnings({z = st_intersection(x, y)})
+  x = vector_regions(z, x_name)
+  y = vector_regions(z, y_name)
 
-  x_df = x %>%
-    mutate(area = as.numeric(st_area(.))) %>%
-    st_set_geometry(NULL) %>%
-    group_by(SECTION) %>%
-    summarise(area = sum(area)) %>%
-    na.omit()
-
-  y_df = y %>%
-    mutate(area = as.numeric(st_area(.))) %>%
-    st_set_geometry(NULL) %>%
-    group_by(ECO_NAME) %>%
-    summarise(area = sum(area)) %>%
-    na.omit()
+  z_df = intersection_prep(z, x_name = x_name, y_name = y_name)
+  x_df = regions_prep(x, x_name)
+  y_df = regions_prep(y, y_name)
 
   # x_df$entropy = apply(z_df, 2, entropy.empirical, unit = unit) /
   #   entropy.empirical(colSums(z_df), unit = unit) # next divide by entropy of a row var

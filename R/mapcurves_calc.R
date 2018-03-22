@@ -20,8 +20,9 @@
 #'
 #' @export
 mapcurves_calc = function(x, y, x_name, y_name){
+        suppressWarnings({z = st_intersection(x, y)})
 
-        z_df = intersection_prep(x = x, y = y, x_name = x_name, y_name = y_name)
+        z_df = intersection_prep(z, x_name = x_name, y_name = y_name)
 
         z = z_df^2 / tcrossprod(rowSums(z_df), colSums(z_df))
 
