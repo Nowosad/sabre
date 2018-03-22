@@ -4,10 +4,16 @@
 \alias{sabre_calc}
 \title{SABRE calculation}
 \usage{
-sabre_calc(x, unit = "log2", B = 1)
+sabre_calc(x, x_name, y, y_name, unit = "log2", B = 1)
 }
 \arguments{
-\item{x}{An output of the \code{\link[=regions_prep]{regions_prep()}} function}
+\item{x}{DESC}
+
+\item{x_name}{DESC}
+
+\item{y}{DESC}
+
+\item{y_name}{DESC}
 
 \item{unit}{A logarithm base ("log", "log2" or "log10")}
 
@@ -17,8 +23,7 @@ sabre_calc(x, unit = "log2", B = 1)
 A list
 }
 \description{
-It calculate the Spatial Association Between REgionalizations (SABRE) using
-the output of the \code{\link[=regions_prep]{regions_prep()}} function.
+It calculate the Spatial Association Between REgionalizations (SABRE).
 }
 \details{
 DETAILS

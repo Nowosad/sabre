@@ -4,17 +4,22 @@
 \alias{mapcurves_calc}
 \title{Mapcurves calculation}
 \usage{
-mapcurves_calc(x)
+mapcurves_calc(x, x_name, y, y_name)
 }
 \arguments{
-\item{x}{An output of the \code{\link[=regions_prep]{regions_prep()}} function}
+\item{x}{DESC}
+
+\item{x_name}{DESC}
+
+\item{y}{DESC}
+
+\item{y_name}{DESC}
 }
 \value{
 A list
 }
 \description{
-It calculate the Mapcurves's goodness-of-fit (GOF) using
-the output of the \code{\link[=regions_prep]{regions_prep()}} function.
+It calculates the Mapcurves's goodness-of-fit (GOF)
 }
 \details{
 DETAILS
