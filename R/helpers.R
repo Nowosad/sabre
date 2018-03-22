@@ -11,6 +11,7 @@ intersection_prep = function(z){
   # z = summarise(z, area = sum(area), do_union = FALSE)
   z = summarise(z, area = sum(area))
   z = spread(z, map1, area, fill = 0)
+  z = z[-1]
   z = as.matrix(z)
 
   return(z)
