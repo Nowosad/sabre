@@ -35,8 +35,8 @@ mapcurves_calc = function(x, x_name, y, y_name){
 
   suppressWarnings({z = st_intersection(x, y)})
 
-  x = vector_regions(z, map1)
-  y = vector_regions(z, map2)
+  # x = vector_regions(z, map1)
+  # y = vector_regions(z, map2)
 
   z_df = intersection_prep(z)
 

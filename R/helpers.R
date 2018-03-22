@@ -4,10 +4,11 @@
 #' @importFrom rlang enquo
 #' @importFrom stats na.omit
 intersection_prep = function(z){
+  z = na.omit(z)
   z = mutate(z, area = as.numeric(st_area(z)))
+  z = filter(z, area > 0)
   z = st_set_geometry(z, NULL)
   z = group_by(z, map1, map2)
-  z = na.omit(z)
   # z = summarise(z, area = sum(area), do_union = FALSE)
   z = summarise(z, area = sum(area))
   z = spread(z, map1, area, fill = 0)
