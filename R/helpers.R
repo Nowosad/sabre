@@ -3,17 +3,14 @@
 #' @importFrom tidyr spread
 #' @importFrom rlang enquo
 #' @importFrom stats na.omit
-intersection_prep = function(z, x_name, y_name){
-  x_name = enquo(x_name)
-  y_name = enquo(y_name)
-
+intersection_prep = function(z){
   z = mutate(z, area = as.numeric(st_area(z)))
   z = st_set_geometry(z, NULL)
-  z = group_by(z, !!x_name, !!y_name)
-  z = summarise(z, area = sum(area), do_union = FALSE)
+  z = group_by(z, map1, map2)
   z = na.omit(z)
-  z = spread(z, !!x_name, area, fill = 0)
-  z = z[-1]
+  # z = summarise(z, area = sum(area), do_union = FALSE)
+  z = summarise(z, area = sum(area))
+  z = spread(z, map1, area, fill = 0)
   z = as.matrix(z)
 
   return(z)

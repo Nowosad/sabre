@@ -28,21 +28,27 @@
 #' @export
 sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
 
+  x_name = enquo(x_name)
+  y_name = enquo(y_name)
+
+  x = rename(x, map1 := !!x_name)
+  y = rename(y, map2 := !!y_name)
+
   x = st_set_precision(x, 1)
   y = st_set_precision(y, 1)
 
   suppressWarnings({z = st_intersection(x, y)})
 
-  x = vector_regions(z, !!enquo(x_name))
-  y = vector_regions(z, !!enquo(y_name))
+  x = vector_regions(z, map1)
+  y = vector_regions(z, map2)
 
-  z_df = intersection_prep(z, !!enquo(x_name), !!enquo(y_name))
+  z_df = intersection_prep(z)
 
-  SjZ = apply(z_df, 2, entropy.empirical, unit = "log2")
-  SjR = apply(z_df, 1, entropy.empirical, unit = "log2")
+  SjZ = apply(z_df, 2, entropy.empirical, unit = unit)
+  SjR = apply(z_df, 1, entropy.empirical, unit = unit)
 
-  SR = entropy.empirical(colSums(z_df), unit = "log2")
-  SZ = entropy.empirical(rowSums(z_df), unit = "log2")
+  SR = entropy.empirical(colSums(z_df), unit = unit)
+  SZ = entropy.empirical(rowSums(z_df), unit = unit)
 
   # homogeneity = 1 - sum((colSums(z_df)/sum(colSums(z_df)) * SjZ) / SZ)
   # completeness = 1 - sum((rowSums(z_df)/sum(rowSums(z_df)) * SjR) / SR)
