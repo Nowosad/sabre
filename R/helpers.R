@@ -11,9 +11,13 @@ intersection_prep = function(z){
   z = group_by(z, map1, map2)
   # z = summarise(z, area = sum(area), do_union = FALSE)
   z = summarise(z, area = sum(area))
+  x_names = sort(unique(z$map1))
+  y_names = sort(unique(z$map2))
+
   z = spread(z, map1, area, fill = 0)
   z = z[-1]
   z = as.matrix(z)
+  dimnames(z) = list(y_names, x_names)
 
   return(z)
 }
