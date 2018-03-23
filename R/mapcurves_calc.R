@@ -16,7 +16,7 @@
 #' Journal of Geographical Systems 8.2 (2006): 187.
 #'
 #' @importFrom sf st_intersection st_set_precision
-#' @importFrom rlang enquo
+#' @importFrom rlang enquo :=
 #' @importFrom dplyr select
 #'
 #' @examples

@@ -20,7 +20,7 @@
 #'
 #' @importFrom entropy entropy.empirical
 #' @importFrom sf st_intersection st_set_precision
-#' @importFrom rlang enquo
+#' @importFrom rlang enquo :=
 #' @importFrom dplyr select
 #'
 #' @examples
