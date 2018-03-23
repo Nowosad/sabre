@@ -1,5 +1,10 @@
 context("test-mapcurves.R")
 
+# tests are based on the work of
+# Emiel van Loon
+# University of Amsterdam
+# http://www.uva.nl/en/profile/l/o/e.e.vanloon/e.e.vanloon.html
+
 A1 = c( 4, 4, 6, 0, 7, 6, 1, 0, 2, NA
        , 4, 0, 8, 0, 8, 5, 0, 3, 3, 1
        , 4, 1, 6, 8, 1, 6, 6, 1, 8, 2
