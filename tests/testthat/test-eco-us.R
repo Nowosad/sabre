@@ -8,12 +8,11 @@ test_that("sabre works on vector", {
 })
 
 test_that("mapcurves works on vector", {
-  expect_equal(mc$gof, 1, tolerance = 3)
+  expect_equal(mc$gof, 1, tolerance = 0.001)
 })
 
 
 
-#
 # vm1 = sabre_calc(eco_us, DOMAIN, eco_us, DIVISION)[[3]]
 # vm2 = sabre_calc(eco_us, DOMAIN, eco_us, PROVINCE)[[3]]
 # vm3 = sabre_calc(eco_us, DOMAIN, eco_us, SECTION)[[3]]
