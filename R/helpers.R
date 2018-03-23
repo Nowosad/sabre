@@ -1,5 +1,5 @@
 #' @importFrom sf st_set_geometry st_area
-#' @importFrom dplyr mutate group_by summarise
+#' @importFrom dplyr mutate group_by summarise filter
 #' @importFrom tidyr spread
 #' @importFrom rlang enquo
 #' @importFrom stats na.omit
@@ -20,6 +20,7 @@ intersection_prep = function(z){
 
 #' @importFrom rlang enquo
 #' @importFrom dplyr select pull group_by summarise
+#' @importFrom sf st_cast
 vector_regions = function(vector_obj, attr_name){
   attr_name = enquo(attr_name)
 

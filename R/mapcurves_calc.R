@@ -15,8 +15,9 @@
 #' "Mapcurves: a quantitative method for comparing categorical maps."
 #' Journal of Geographical Systems 8.2 (2006): 187.
 #'
-#' @importFrom sf st_intersection
+#' @importFrom sf st_intersection st_set_precision
 #' @importFrom rlang enquo
+#' @importFrom dplyr select
 #'
 #' @examples
 #' # EXAMPLES
@@ -27,8 +28,8 @@ mapcurves_calc = function(x, x_name, y, y_name){
   x_name = enquo(x_name)
   y_name = enquo(y_name)
 
-  x = rename(x, map1 := !!x_name)
-  y = rename(y, map2 := !!y_name)
+  x = select(x, map1 := !!x_name)
+  y = select(y, map2 := !!y_name)
 
   x = st_set_precision(x, 1)
   y = st_set_precision(y, 1)
