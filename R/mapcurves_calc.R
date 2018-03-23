@@ -23,7 +23,7 @@
 #' # EXAMPLES
 #'
 #' @export
-mapcurves_calc = function(x, x_name, y, y_name){
+mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
 
   x_name = enquo(x_name)
   y_name = enquo(y_name)
@@ -31,8 +31,8 @@ mapcurves_calc = function(x, x_name, y, y_name){
   x = select(x, map1 := !!x_name)
   y = select(y, map2 := !!y_name)
 
-  x = st_set_precision(x, 1)
-  y = st_set_precision(y, 1)
+  x = st_set_precision(x, precision)
+  y = st_set_precision(y, precision)
 
   suppressWarnings({z = st_intersection(x, y)})
 

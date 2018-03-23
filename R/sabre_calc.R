@@ -27,7 +27,7 @@
 #' # EXAMPLES
 #'
 #' @export
-sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
+sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1, precision = 1){
 
   x_name = enquo(x_name)
   y_name = enquo(y_name)
@@ -37,8 +37,8 @@ sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1){
   y = select(y, map2 := !!y_name)
   y = mutate_if(y, is.factor, as.character)
 
-  x = st_set_precision(x, 1)
-  y = st_set_precision(y, 1)
+  x = st_set_precision(x, precision)
+  y = st_set_precision(y, precision)
 
   suppressWarnings({z = st_intersection(x, y)})
 
