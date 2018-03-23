@@ -4,7 +4,7 @@
 \alias{v_measure}
 \title{V-measure}
 \usage{
-v_measure(x, y, z = NULL, unit = "log2", B = 1)
+v_measure(x, y, z = NULL, B = 1)
 }
 \arguments{
 \item{x}{A numeric vector of counts}
@@ -12,8 +12,6 @@ v_measure(x, y, z = NULL, unit = "log2", B = 1)
 \item{y}{A numeric vector of counts}
 
 \item{z}{A numeric matrix of counts}
-
-\item{unit}{A logarithm base ("log", "log2" or "log10")}
 
 \item{B}{DESC}
 }

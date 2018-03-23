@@ -6,6 +6,7 @@
 #' @param x_name DESC
 #' @param x DESC
 #' @param y_name DESC
+#' @param precision DESC
 #'
 #' @return A list
 #'

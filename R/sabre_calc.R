@@ -6,8 +6,8 @@
 #' @param x_name DESC
 #' @param x DESC
 #' @param y_name DESC
-#' @param unit A logarithm base ("log", "log2" or "log10")
 #' @param B DESC
+#' @param precision DESC
 #'
 #' @return A list
 #'
@@ -27,7 +27,7 @@
 #' # EXAMPLES
 #'
 #' @export
-sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1, precision = 1){
+sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
 
   x_name = enquo(x_name)
   y_name = enquo(y_name)
@@ -44,11 +44,11 @@ sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1, precision = 1)
 
   z_df = intersection_prep(z)
 
-  SjZ = apply(z_df, 2, entropy.empirical, unit = unit)
-  SjR = apply(z_df, 1, entropy.empirical, unit = unit)
+  SjZ = apply(z_df, 2, entropy.empirical, unit = "log2")
+  SjR = apply(z_df, 1, entropy.empirical, unit = "log2")
 
-  SR = entropy.empirical(colSums(z_df), unit = unit)
-  SZ = entropy.empirical(rowSums(z_df), unit = unit)
+  SR = entropy.empirical(colSums(z_df), unit = "log2")
+  SZ = entropy.empirical(rowSums(z_df), unit = "log2")
 
   # homogeneity = 1 - sum((colSums(z_df)/sum(colSums(z_df)) * SjZ) / SZ)
   # completeness = 1 - sum((rowSums(z_df)/sum(rowSums(z_df)) * SjR) / SR)
@@ -65,7 +65,7 @@ sabre_calc = function(x, x_name, y, y_name, unit = "log2", B = 1, precision = 1)
   # B = 1
   # vmeasure = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
 
-  v_result = v_measure(x = colSums(z_df), y = rowSums(z_df), z = z_df, unit = unit, B = B)
+  v_result = v_measure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
   sabre_result = list(x, y, v_result)
   return(sabre_result)
 }

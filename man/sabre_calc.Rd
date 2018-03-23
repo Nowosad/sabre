@@ -4,7 +4,7 @@
 \alias{sabre_calc}
 \title{SABRE calculation}
 \usage{
-sabre_calc(x, x_name, y, y_name, unit = "log2", B = 1)
+sabre_calc(x, x_name, y, y_name, B = 1, precision = 1)
 }
 \arguments{
 \item{x}{DESC}
@@ -15,9 +15,9 @@ sabre_calc(x, x_name, y, y_name, unit = "log2", B = 1)
 
 \item{y_name}{DESC}
 
-\item{unit}{A logarithm base ("log", "log2" or "log10")}
-
 \item{B}{DESC}
+
+\item{precision}{DESC}
 }
 \value{
 A list

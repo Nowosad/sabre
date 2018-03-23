@@ -4,7 +4,7 @@
 \alias{mapcurves_calc}
 \title{Mapcurves calculation}
 \usage{
-mapcurves_calc(x, x_name, y, y_name)
+mapcurves_calc(x, x_name, y, y_name, precision = 1)
 }
 \arguments{
 \item{x}{DESC}
@@ -14,6 +14,8 @@ mapcurves_calc(x, x_name, y, y_name)
 \item{y}{DESC}
 
 \item{y_name}{DESC}
+
+\item{precision}{DESC}
 }
 \value{
 A list

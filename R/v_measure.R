@@ -5,7 +5,6 @@
 #' @param x A numeric vector of counts
 #' @param y A numeric vector of counts
 #' @param z A numeric matrix of counts
-#' @param unit A logarithm base ("log", "log2" or "log10")
 #' @param B DESC
 #'
 #' @return A list
@@ -23,13 +22,13 @@
 #' # EXAMPLES
 #'
 #' @export
-v_measure = function(x, y, z = NULL, unit = "log2", B = 1){
-  entropy_x = entropy.empirical(x / length(x), unit = unit)
-  entropy_y = entropy.empirical(y / length(y), unit = unit)
+v_measure = function(x, y, z = NULL, B = 1){
+  entropy_x = entropy.empirical(x / length(x), unit = "log2")
+  entropy_y = entropy.empirical(y / length(y), unit = "log2")
   if (is.null(z)){
-    mi_xy = mi.empirical(table(x, y), unit = unit)
+    mi_xy = mi.empirical(table(x, y), unit = "log2")
   } else {
-    mi_xy = mi.empirical(z, unit = unit)
+    mi_xy = mi.empirical(z, unit = "log2")
   }
   if(entropy_x == 0){
     homogeneity = 1
