@@ -1,14 +1,14 @@
 context("test-eco-us.R")
 data("eco_us")
-vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)[[3]]
-mc = mapcurves_calc(eco_us, PROVINCE, eco_us, SECTION)[[3]]
+vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)
+mc = mapcurves_calc(eco_us, PROVINCE, eco_us, SECTION)
 
 test_that("sabre works on vector", {
-  expect_equal(unlist(vm), c(vmeasure = 0.797, homogeneity = 1, completeness = 0.662), tolerance = 0.001)
+  expect_equal(unlist(vm[[3]]), c(vmeasure = 0.797, homogeneity = 1, completeness = 0.662), tolerance = 0.001)
 })
 
 test_that("mapcurves works on vector", {
-  expect_equal(mc$gof, 1, tolerance = 0.001)
+  expect_equal(mc[[3]]$gof, 1, tolerance = 0.001)
 })
 
 
