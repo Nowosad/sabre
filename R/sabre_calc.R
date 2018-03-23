@@ -62,6 +62,7 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
   x = left_join(x, x_df, by = "map1")
   y = vector_regions(z, map2)
   y = left_join(y, y_df, by = "map2")
+
   # B = 1
   # vmeasure = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
 
