@@ -5,13 +5,13 @@
 \alias{regions1}
 \title{Red regionalization}
 \format{An object of class \code{sf} (inherits from \code{data.frame}) with 4 rows and 2 columns.}
-\source{
-...
-}
 \usage{
 regions1
 }
 \description{
 Data of the red regionalization used in Figure 1
+}
+\references{
+...
 }
 \keyword{datasets}

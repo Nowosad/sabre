@@ -9,12 +9,12 @@
 #'
 #' Data of the red regionalization used in Figure 1
 #'
-#' @source ...
+#' @references  ...
 "regions1"
 
 #' Blue regionalization
 #'
 #' Data of the blue regionalization used in Figure 1
 #'
-#' @source ...
+#' @references ...
 "regions2"

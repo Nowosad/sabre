@@ -19,7 +19,7 @@
 #' processing and computational natural language learning (EMNLP-CoNLL). 2007.
 #'
 #' @importFrom entropy entropy.empirical
-#' @importFrom sf st_intersection st_set_precision
+#' @importFrom sf st_intersection st_set_precision st_crs st_geometry
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select left_join mutate_if
 #'
@@ -28,6 +28,10 @@
 #'
 #' @export
 sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
+
+  stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
+  stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
+  stopifnot(st_crs(x) == st_crs(y) || !all(is.na(st_crs(x)), is.na(st_crs(y))))
 
   x_name = enquo(x_name)
   y_name = enquo(y_name)

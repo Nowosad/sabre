@@ -26,6 +26,10 @@
 #' @export
 mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
 
+  stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
+  stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
+  stopifnot(st_crs(x) == st_crs(y) || !all(is.na(st_crs(x)), is.na(st_crs(y))))
+
   x_name = enquo(x_name)
   y_name = enquo(y_name)
 
