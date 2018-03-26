@@ -7,17 +7,18 @@
 sabre_calc(x, x_name, y, y_name, B = 1, precision = 1)
 }
 \arguments{
-\item{x}{DESC}
+\item{x}{An object of class \code{sf}with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
-\item{x_name}{DESC}
+\item{x_name}{A name of the column with regions/clusters names.}
 
-\item{y}{DESC}
+\item{y}{An object of class \code{sf}with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
-\item{y_name}{DESC}
+\item{y_name}{A name of the column with regions/clusters names.}
 
-\item{B}{DESC}
+\item{B}{A numeric value. If \code{B`` > 1 then completeness is weighted more strongly than homogeneity, and if}B` < 1 then homogeneity is weighted more strongly than
+completeness}
 
-\item{precision}{DESC}
+\item{precision}{A numeric value. DESC}
 }
 \value{
 A list
@@ -33,6 +34,8 @@ DETAILS
 
 }
 \references{
+...
+
 Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 A conditional entropy-based external cluster evaluation measure." Proceedings
 of the 2007 joint conference on empirical methods in natural language

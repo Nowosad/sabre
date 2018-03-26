@@ -2,17 +2,20 @@
 #'
 #' It calculate the Spatial Association Between REgionalizations (SABRE).
 #'
-#' @param y DESC
-#' @param x_name DESC
-#' @param x DESC
-#' @param y_name DESC
-#' @param B DESC
-#' @param precision DESC
+#' @param x An object of class `sf`with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param x_name A name of the column with regions/clusters names.
+#' @param y An object of class `sf`with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param y_name A name of the column with regions/clusters names.
+#' @param B A numeric value. If `B`` > 1 then completeness is weighted more strongly than
+#' homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than
+#' completeness
+#' @param precision A numeric value. DESC
 #'
 #' @return A list
 #'
 #' @details DETAILS
 #'
+#' @references ...
 #' @references Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 #' A conditional entropy-based external cluster evaluation measure." Proceedings
 #' of the 2007 joint conference on empirical methods in natural language
