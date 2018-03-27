@@ -25,4 +25,5 @@ Imports:
     entropy,
     tidyr,
     dplyr,
-    rlang
+    rlang,
+    tibble
