@@ -4,7 +4,7 @@
 \alias{sabre_calc}
 \title{SABRE calculation}
 \usage{
-sabre_calc(x, x_name, y, y_name, B = 1, precision = 1)
+sabre_calc(x, x_name, y, y_name, B = 1, precision = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{sf}with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}

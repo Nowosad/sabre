@@ -22,15 +22,16 @@
 #' processing and computational natural language learning (EMNLP-CoNLL). 2007.
 #'
 #' @importFrom entropy entropy.empirical
-#' @importFrom sf st_intersection st_set_precision st_crs st_geometry
+#' @importFrom sf st_intersection st_set_precision st_crs st_geometry st_cast st_is st_collection_extract
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select left_join mutate_if
+#' @importFrom tibble data_frame
 #'
 #' @examples
 #' # EXAMPLES
 #'
 #' @export
-sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
+sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -41,13 +42,24 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
 
   x = select(x, map1 := !!x_name)
   x = mutate_if(x, is.factor, as.character)
+  x = mutate_if(x, is.numeric, as.character)
+  x = st_cast(x, "POLYGON")
+
   y = select(y, map2 := !!y_name)
   y = mutate_if(y, is.factor, as.character)
+  y = mutate_if(y, is.numeric, as.character)
+  y = st_cast(y, "POLYGON")
 
-  x = st_set_precision(x, precision)
-  y = st_set_precision(y, precision)
+  if(!is.null(precision)){
+    x = st_set_precision(x, precision)
+    y = st_set_precision(y, precision)
+  }
 
-  suppressWarnings({z = st_intersection(x, y)})
+  system.time({suppressWarnings({z = st_intersection(x, y)})})
+  # poly_ids = st_is(z, c("POLYGON", "MULTIPOLYGON", "GEOMETRYCOLLECTION"))
+  # z = filter(z, poly_ids)
+  # z = st_cast(z, "MULTIPOLYGON")
+  z = st_collection_extract(z)
 
   z_df = intersection_prep(z)
 
@@ -74,7 +86,9 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = 1){
   # vmeasure = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
 
   v_result = v_measure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
-  sabre_result = list(x, y, v_result)
+  # sabre_result = list(x, y, v_result)
+  sabre_result = data_frame(map1 = list(x), map2 = list(y), v_measure = v_result[[1]],
+                            homogeneity = v_result[[2]], completeness = v_result[[3]])
   return(sabre_result)
 }
 
