@@ -41,13 +41,12 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
 
   suppressWarnings({z = st_intersection(x, y)})
 
-  # x = vector_regions(z, map1)
-  # y = vector_regions(z, map2)
-
   z_df = intersection_prep(z)
 
   z = z_df^2 / tcrossprod(rowSums(z_df), colSums(z_df))
 
+  # x = vector_regions(z, map1)
+  # y = vector_regions(z, map2)
   # x$gof = apply(z, 2, function(x) max(x))
   # y$gof = apply(z, 1, function(x) max(x))
 
