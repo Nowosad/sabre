@@ -43,12 +43,12 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
   x = select(x, map1 := !!x_name)
   x = mutate_if(x, is.factor, as.character)
   x = mutate_if(x, is.numeric, as.character)
-  x = st_cast(x, "POLYGON")
+  suppressWarnings({x = st_cast(x, "POLYGON")})
 
   y = select(y, map2 := !!y_name)
   y = mutate_if(y, is.factor, as.character)
   y = mutate_if(y, is.numeric, as.character)
-  y = st_cast(y, "POLYGON")
+  suppressWarnings({y = st_cast(y, "POLYGON")})
 
   if(!is.null(precision)){
     x = st_set_precision(x, precision)
