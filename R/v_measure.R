@@ -5,7 +5,9 @@
 #' @param x A numeric vector of counts
 #' @param y A numeric vector of counts
 #' @param z A numeric matrix of counts
-#' @param B DESC
+#' @param B A numeric value. If `B` > 1 then completeness is weighted more strongly than
+#' homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than
+#' completeness
 #'
 #' @return A list
 #'

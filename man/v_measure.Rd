@@ -13,7 +13,9 @@ v_measure(x, y, z = NULL, B = 1)
 
 \item{z}{A numeric matrix of counts}
 
-\item{B}{DESC}
+\item{B}{A numeric value. If \code{B} > 1 then completeness is weighted more strongly than
+homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
+completeness}
 }
 \value{
 A list
