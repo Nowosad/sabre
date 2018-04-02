@@ -30,11 +30,20 @@ It calculate the Spatial Association Between REgionalizations (SABRE).
 DETAILS
 }
 \examples{
-# EXAMPLES
+library(sf)
+data("regions1")
+data("regions2")
+vm = sabre_calc(regions1, z, regions2, z)
+vm
+
+plot(vm$map1[[1]]["rih"])
+plot(vm$map2[[1]]["rih"])
 
 }
 \references{
-...
+Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+spatial association between regionalizations or categorical maps using the
+information-theoretical V-measure."
 
 Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 A conditional entropy-based external cluster evaluation measure." Proceedings

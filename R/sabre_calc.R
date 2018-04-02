@@ -1,6 +1,6 @@
 #' SABRE calculation
 #'
-#' It calculate the Spatial Association Between REgionalizations (SABRE).
+#' It calculates the Spatial Association Between REgionalizations (SABRE).
 #'
 #' @param x An object of class `sf`with a `POLYGON` or `MULTIPOLYGON` geometry type
 #' @param x_name A name of the column with regions/clusters names.
@@ -15,7 +15,9 @@
 #'
 #' @details DETAILS
 #'
-#' @references ...
+#' @references Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+#' spatial association between regionalizations or categorical maps using the
+#' information-theoretical V-measure."
 #' @references Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 #' A conditional entropy-based external cluster evaluation measure." Proceedings
 #' of the 2007 joint conference on empirical methods in natural language
@@ -28,7 +30,14 @@
 #' @importFrom tibble data_frame
 #'
 #' @examples
-#' # EXAMPLES
+#' library(sf)
+#' data("regions1")
+#' data("regions2")
+#' vm = sabre_calc(regions1, z, regions2, z)
+#' vm
+#'
+#' plot(vm$map1[[1]]["rih"])
+#' plot(vm$map2[[1]]["rih"])
 #'
 #' @export
 sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
@@ -72,9 +81,9 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
   # homogeneity = 1 - sum((colSums(z_df)/sum(colSums(z_df)) * SjZ) / SZ)
   # completeness = 1 - sum((rowSums(z_df)/sum(rowSums(z_df)) * SjR) / SR)
 
-  x_df = data.frame(map1 = colnames(z_df), sabre = SjZ/SZ,
+  x_df = data.frame(map1 = colnames(z_df), rih = SjZ/SZ,
                     row.names = NULL, stringsAsFactors = FALSE) # map1
-  y_df = data.frame(map2 = rownames(z_df), sabre = SjR/SR,
+  y_df = data.frame(map2 = rownames(z_df), rih = SjR/SR,
                     row.names = NULL, stringsAsFactors = FALSE) # map2
 
   x = vector_regions(z, map1)
