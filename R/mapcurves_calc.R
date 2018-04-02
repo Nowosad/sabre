@@ -2,13 +2,13 @@
 #'
 #' It calculates the Mapcurves's goodness-of-fit (GOF)
 #'
-#' @param y DESC
-#' @param x_name DESC
-#' @param x DESC
-#' @param y_name DESC
-#' @param precision DESC
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param x_name A name of the column with regions/clusters names.
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param y_name A name of the column with regions/clusters names.
+#' @inheritParams sf::st_set_precision
 #'
-#' @return A list
+#' @return A tibble
 #'
 #' @details DETAILS
 #'
@@ -16,15 +16,20 @@
 #' "Mapcurves: a quantitative method for comparing categorical maps."
 #' Journal of Geographical Systems 8.2 (2006): 187.
 #'
-#' @importFrom sf st_intersection st_set_precision
+#' @importFrom sf st_intersection st_set_precision st_crs st_geometry st_cast
 #' @importFrom rlang enquo :=
-#' @importFrom dplyr select
+#' @importFrom dplyr select mutate_if
+#' @importFrom tibble data_frame
 #'
 #' @examples
-#' # EXAMPLES
+#' library(sf)
+#' data("regions1")
+#' data("regions2")
+#'
+#' mc = mapcurves_calc(regions1, z, regions2, z)
 #'
 #' @export
-mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
+mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -34,12 +39,22 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
   y_name = enquo(y_name)
 
   x = select(x, map1 := !!x_name)
-  y = select(y, map2 := !!y_name)
+  x = mutate_if(x, is.factor, as.character)
+  x = mutate_if(x, is.numeric, as.character)
+  suppressWarnings({x = st_cast(x, "POLYGON")})
 
-  x = st_set_precision(x, precision)
-  y = st_set_precision(y, precision)
+  y = select(y, map2 := !!y_name)
+  y = mutate_if(y, is.factor, as.character)
+  y = mutate_if(y, is.numeric, as.character)
+  suppressWarnings({y = st_cast(y, "POLYGON")})
+
+  if(!is.null(precision)){
+    x = st_set_precision(x, precision)
+    y = st_set_precision(y, precision)
+  }
 
   suppressWarnings({z = st_intersection(x, y)})
+  z = st_collection_extract(z)
 
   z_df = intersection_prep(z)
 
@@ -51,6 +66,7 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = 1){
   # y$gof = apply(z, 1, function(x) max(x))
 
   mapcurves_result = mapcurves(z = z)
-  result = list(x, y, mapcurves_result)
+  result = data_frame(map1 = list(x), map2 = list(y),
+                      final_map = mapcurves_result$map, gof = mapcurves_result$gof)
   return(result)
 }

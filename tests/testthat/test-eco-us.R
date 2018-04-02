@@ -15,9 +15,9 @@ test_that("sabre works on vector", {
 })
 
 test_that("mapcurves works on vector", {
-  expect_equal(mc[[3]]$gof, 1, tolerance = 0.001)
+  expect_equal(mc$gof, 1, tolerance = 0.001)
 })
 
 test_that("mapcurves is homogeneity", {
-  expect_equal(mc[[3]]$gof, vm[[4]], tolerance = 0.001)
+  expect_equal(mc$gof, vm[[4]], tolerance = 0.001)
 })

@@ -4,21 +4,21 @@
 \alias{mapcurves_calc}
 \title{Mapcurves calculation}
 \usage{
-mapcurves_calc(x, x_name, y, y_name, precision = 1)
+mapcurves_calc(x, x_name, y, y_name, precision = NULL)
 }
 \arguments{
-\item{x}{DESC}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
-\item{x_name}{DESC}
+\item{x_name}{A name of the column with regions/clusters names.}
 
-\item{y}{DESC}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
-\item{y_name}{DESC}
+\item{y_name}{A name of the column with regions/clusters names.}
 
-\item{precision}{DESC}
+\item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A list
+A tibble
 }
 \description{
 It calculates the Mapcurves's goodness-of-fit (GOF)
@@ -27,7 +27,11 @@ It calculates the Mapcurves's goodness-of-fit (GOF)
 DETAILS
 }
 \examples{
-# EXAMPLES
+library(sf)
+data("regions1")
+data("regions2")
+
+mc = mapcurves_calc(regions1, z, regions2, z)
 
 }
 \references{

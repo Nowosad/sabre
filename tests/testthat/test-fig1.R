@@ -1,4 +1,5 @@
 context("test-eco-us.R")
+
 data("regions1")
 data("regions2")
 
@@ -12,6 +13,6 @@ test_that("sabre works on vector", {
 })
 
 test_that("mapcurves works on vector", {
-  expect_equal(mc[[3]]$gof, 0.61, tolerance = 0.01)
+  expect_equal(mc$gof, 0.61, tolerance = 0.01)
 })
 
