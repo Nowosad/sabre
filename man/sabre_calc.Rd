@@ -7,24 +7,25 @@
 sabre_calc(x, x_name, y, y_name, B = 1, precision = NULL)
 }
 \arguments{
-\item{x}{An object of class \code{sf}with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
 \item{x_name}{A name of the column with regions/clusters names.}
 
-\item{y}{An object of class \code{sf}with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
-\item{B}{A numeric value. If \code{B`` > 1 then completeness is weighted more strongly than homogeneity, and if}B` < 1 then homogeneity is weighted more strongly than
+\item{B}{A numeric value. If \code{B} > 1 then completeness is weighted more strongly than
+homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
 completeness}
 
-\item{precision}{A numeric value. DESC}
+\item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A list
+A tibble
 }
 \description{
-It calculate the Spatial Association Between REgionalizations (SABRE).
+It calculates the Spatial Association Between REgionalizations (SABRE).
 }
 \details{
 DETAILS

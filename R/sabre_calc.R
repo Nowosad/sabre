@@ -2,16 +2,14 @@
 #'
 #' It calculates the Spatial Association Between REgionalizations (SABRE).
 #'
-#' @param x An object of class `sf`with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
 #' @param x_name A name of the column with regions/clusters names.
-#' @param y An object of class `sf`with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
 #' @param y_name A name of the column with regions/clusters names.
-#' @param B A numeric value. If `B`` > 1 then completeness is weighted more strongly than
-#' homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than
-#' completeness
-#' @param precision A numeric value. DESC
+#' @inheritParams v_measure
+#' @inheritParams sf::st_set_precision
 #'
-#' @return A list
+#' @return A tibble
 #'
 #' @details DETAILS
 #'
@@ -24,7 +22,7 @@
 #' processing and computational natural language learning (EMNLP-CoNLL). 2007.
 #'
 #' @importFrom entropy entropy.empirical
-#' @importFrom sf st_intersection st_set_precision st_crs st_geometry st_cast st_is st_collection_extract
+#' @importFrom sf st_intersection st_set_precision st_crs st_geometry st_cast st_collection_extract
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select left_join mutate_if
 #' @importFrom tibble data_frame
@@ -64,7 +62,7 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
     y = st_set_precision(y, precision)
   }
 
-  system.time({suppressWarnings({z = st_intersection(x, y)})})
+  suppressWarnings({z = st_intersection(x, y)})
   # poly_ids = st_is(z, c("POLYGON", "MULTIPOLYGON", "GEOMETRYCOLLECTION"))
   # z = filter(z, poly_ids)
   # z = st_cast(z, "MULTIPOLYGON")
