@@ -1,0 +1,80 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# sabre
+
+[![Travis build status](https://travis-ci.org/Nowosad/sabre.svg?branch=master)](https://travis-ci.org/Nowosad/sabre)
+[![Coverage status](https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://codecov.io/github/Nowosad/sabre?branch=master)
+
+The **sabre** (**S**patial **A**ssociation **B**etween **RE**gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps.
+This package offers support for `sf` spatial objects, and the following methods:
+
+- the V-measure method 
+- the MapCurve method (Hargrove et al., 2006)
+
+## Installation
+
+<!-- You can install the released version of sabre from [CRAN](https://CRAN.R-project.org) with: -->
+
+<!-- ``` r -->
+<!-- install.packages("sabre") -->
+<!-- ``` -->
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Nowosad/sabre")
+```
+## Examples
+
+```{r}
+library(sabre)
+library(sf)
+data("regions1")
+data("regions2")
+```
+
+```{r}
+library(tmap)
+rm1 = tm_shape(regions1) + tm_polygons("z")
+rm2 = tm_shape(regions2) + tm_polygons("z")
+tmap_arrange(rm1, rm2)
+```
+
+```{r}
+regions_vm = sabre_calc(regions1, z, regions2, z)
+regions_vm
+```
+
+```{r}
+data("eco_us")
+```
+
+```{r}
+em1 = tm_shape(eco_us) + tm_fill("PROVINCE", legend.show = FALSE)
+em2 = tm_shape(eco_us) + tm_fill("SECTION", legend.show = FALSE)
+tmap_arrange(em1, em2)
+```
+
+```{r}
+eco_us_vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)
+eco_us_vm
+```
+
+## References
+
+- Rosenberg, Andrew, and Julia Hirschberg. "V-measure: A conditional entropy-based external cluster evaluation measure." Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.
+- Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. "Mapcurves: a quantitative method for comparing categorical maps." Journal of Geographical Systems 8.2 (2006): 187.
