@@ -45,8 +45,8 @@ data("regions2")
 vm = sabre_calc(regions1, z, regions2, z)
 vm
 
-plot(vm$map1[[1]]["rih"])
-plot(vm$map2[[1]]["rih"])
+plot(vm$map1["rih"])
+plot(vm$map2["rih"])
 
 }
 \references{

@@ -35,8 +35,8 @@ data("regions1")
 data("regions2")
 
 mc = mapcurves_calc(regions1, z, regions2, z)
-plot(mc$map1[[1]])
-plot(mc$map2[[1]])
+plot(mc$map1)
+plot(mc$map2)
 
 }
 \references{

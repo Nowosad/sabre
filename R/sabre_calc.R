@@ -41,8 +41,8 @@
 #' vm = sabre_calc(regions1, z, regions2, z)
 #' vm
 #'
-#' plot(vm$map1[[1]]["rih"])
-#' plot(vm$map2[[1]]["rih"])
+#' plot(vm$map1["rih"])
+#' plot(vm$map2["rih"])
 #'
 #' @export
 sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
