@@ -22,7 +22,7 @@ completeness. By default this value is 1.}
 \item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A tibble with five variables and one row:
+A list with five elements:
 \itemize{
 \item "map1" - the sf object containing the first preprocessed map used for
 calculation of GOF with two attributes - \code{map1} (name of the category)

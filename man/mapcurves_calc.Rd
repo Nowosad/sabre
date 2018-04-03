@@ -18,7 +18,7 @@ mapcurves_calc(x, x_name, y, y_name, precision = NULL)
 \item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A tibble with four variables and one row:
+A list with four elements:
 \itemize{
 \item "map1" - the sf object containing the first map used for calculation of GOF
 \item "map2" - the sf object containing the second map used for calculation of GOF

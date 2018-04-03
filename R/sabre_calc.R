@@ -9,7 +9,7 @@
 #' @inheritParams v_measure
 #' @inheritParams sf::st_set_precision
 #'
-#' @return A tibble with five variables and one row:
+#' @return A list with five elements:
 #' * "map1" - the sf object containing the first preprocessed map used for
 #' calculation of GOF with two attributes - `map1` (name of the category)
 #' and `rih` (region inhomogeneity)
@@ -101,8 +101,9 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
 
   v_result = v_measure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
   # sabre_result = list(x, y, v_result)
-  sabre_result = data_frame(map1 = list(x), map2 = list(y), v_measure = v_result[[1]],
-                            homogeneity = v_result[[2]], completeness = v_result[[3]])
+  sabre_result = list(map1 = x, map2 = y, v_measure = v_result$v_measure,
+                      homogeneity = v_result$homogeneity,
+                      completeness = v_result$completeness)
   return(sabre_result)
 }
 

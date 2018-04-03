@@ -8,7 +8,7 @@
 #' @param y_name A name of the column with regions/clusters names.
 #' @inheritParams sf::st_set_precision
 #'
-#' @return A tibble with four variables and one row:
+#' @return A list with four elements:
 #' * "map1" - the sf object containing the first map used for calculation of GOF
 #' * "map2" - the sf object containing the second map used for calculation of GOF
 #' * "ref_map" - the map to be used as reference ("x" or "y")
@@ -29,8 +29,8 @@
 #' data("regions2")
 #'
 #' mc = mapcurves_calc(regions1, z, regions2, z)
-#' plot(mc$map1[[1]])
-#' plot(mc$map2[[1]])
+#' plot(mc$map1)
+#' plot(mc$map2)
 #'
 #' @export
 mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
@@ -70,7 +70,7 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
   # y$gof = apply(z, 1, function(x) max(x))
 
   mapcurves_result = mapcurves(z = z)
-  result = data_frame(map1 = list(x), map2 = list(y),
-                      ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
+  result = list(map1 = x, map2 = y,
+                ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
   return(result)
 }
