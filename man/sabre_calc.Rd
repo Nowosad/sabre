@@ -24,10 +24,12 @@ completeness. By default this value is 1.}
 \value{
 A tibble with five variables and one row:
 \itemize{
-\item "map1" - the sf object containing the first map used for calculation of GOF
-with two attributes - \code{map1} (name of the category) and \code{rih} (region inhomogeneity)
-\item "map2" - the sf object containing the second map used for calculation of GOF
-with two attributes - \code{map1} (name of the category) and \code{rih} (region inhomogeneity)
+\item "map1" - the sf object containing the first preprocessed map used for
+calculation of GOF with two attributes - \code{map1} (name of the category)
+and \code{rih} (region inhomogeneity)
+\item "map2" - the sf object containing the second preprocessed map used for
+calculation of GOF with two attributes - \code{map1} (name of the category)
+and \code{rih} (region inhomogeneity)
 \item "v_measure"
 \item "homogeneity"
 \item "completeness"
@@ -35,9 +37,6 @@ with two attributes - \code{map1} (name of the category) and \code{rih} (region 
 }
 \description{
 It calculates the Spatial Association Between REgionalizations (SABRE).
-}
-\details{
-DETAILS
 }
 \examples{
 library(sf)

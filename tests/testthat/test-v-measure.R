@@ -19,8 +19,8 @@ solution_d = list(x = c(1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 3, 3, 1, 2, 3, 1,
                   y = c(rep(1, 5), rep(2, 5), rep(3, 5), 4, 5, 6, 7, 8, 9))
 
 test_that("multiplication works", {
-  expect_equal(v_measure(solution_a$x, solution_a$y)$vmeasure, 0.14, tolerance = 3)
-  expect_equal(v_measure(solution_b$x, solution_b$y)$vmeasure, 0.39, tolerance = 3)
-  expect_equal(v_measure(solution_c$x, solution_c$y)$vmeasure, 0.30, tolerance = 3)
-  expect_equal(v_measure(solution_d$x, solution_d$y)$vmeasure, 0.41, tolerance = 3)
+  expect_equal(v_measure(solution_a$x, solution_a$y)$v_measure, 0.14, tolerance = 3)
+  expect_equal(v_measure(solution_b$x, solution_b$y)$v_measure, 0.39, tolerance = 3)
+  expect_equal(v_measure(solution_c$x, solution_c$y)$v_measure, 0.30, tolerance = 3)
+  expect_equal(v_measure(solution_d$x, solution_d$y)$v_measure, 0.41, tolerance = 3)
 })

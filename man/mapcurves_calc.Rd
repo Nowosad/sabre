@@ -29,9 +29,6 @@ A tibble with four variables and one row:
 \description{
 It calculates the Mapcurves's goodness-of-fit (GOF)
 }
-\details{
-DETAILS
-}
 \examples{
 library(sf)
 data("regions1")

@@ -14,8 +14,6 @@
 #' * "ref_map" - the map to be used as reference ("x" or "y")
 #' * "gof" - the Mapcurves's goodness of fit value
 #'
-#' @details DETAILS
-#'
 #' @references Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
 #' "Mapcurves: a quantitative method for comparing categorical maps."
 #' Journal of Geographical Systems 8.2 (2006): 187.
