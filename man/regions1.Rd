@@ -9,9 +9,11 @@
 regions1
 }
 \description{
-Data of the red regionalization used in Figure 1
+Data of the red regionalization used in Figure 1 of Stepinski and Nowosad (2018)
 }
 \references{
-...
+Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+spatial association between regionalizations or categorical maps using the
+information-theoretical V-measure."
 }
 \keyword{datasets}
