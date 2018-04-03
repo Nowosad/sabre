@@ -6,7 +6,9 @@
 \alias{sabre-package}
 \title{sabre: Spatial Association Between REgionalizations}
 \description{
-What the package does (one paragraph).
+Calculates a degree of spatial association between regionalizations
+or categorical maps using the information-theoretical V-measure. It also
+offers an R implementation of the MapCurve method.
 }
 \author{
 \strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (0000-0002-1057-3721)

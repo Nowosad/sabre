@@ -1,7 +1,9 @@
 Package: sabre
-Version: 0.0.1
+Version: 0.1.0
 Title: Spatial Association Between REgionalizations 
-Description: What the package does (one paragraph).
+Description: Calculates a degree of spatial association between regionalizations 
+    or categorical maps using the information-theoretical V-measure. It also
+    offers an R implementation of the MapCurve method.
 Authors@R: c(person("Jakub", "Nowosad", 
     email = "nowosad.jakub@gmail.com",
     role = c("aut", "cre"),
