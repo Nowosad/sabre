@@ -1,6 +1,6 @@
 context("test-v-measure.R")
 
-# Examples from Firuge 2 of
+# Examples from Figure 2 of
 # Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 # A conditional entropy-based external cluster evaluation measure." Proceedings
 # of the 2007 joint conference on empirical methods in natural language
