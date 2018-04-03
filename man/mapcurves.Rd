@@ -7,17 +7,20 @@
 mapcurves(x, y, z = NULL)
 }
 \arguments{
-\item{x}{A numeric vector, representing a categorical values}
+\item{x}{A numeric vector, representing a categorical values.}
 
-\item{y}{A numeric vector, representing a categorical values}
+\item{y}{A numeric vector, representing a categorical values.}
 
 \item{z}{A numeric matrix. The goodness of fit (GOF) value fir each pair of
 classes in \code{x} and \code{y}. By default this argument is set to \code{NULL},
-and the value of \code{z} is calculated based on \code{x} and \code{y}}
+and the value of \code{z} is calculated based on \code{x} and \code{y}.}
 }
 \value{
-A list with two elements - "map" (the map to be used as reference
-("x" or "y")) and "gof" (the mapcurves goodness of fit value)
+A list with two elements:
+\itemize{
+\item "ref_map" - the map to be used as reference ("x" or "y")
+\item "gof" - the Mapcurves's goodness of fit value
+}
 }
 \description{
 Mapcurves: a quantitative method for comparing categorical maps.

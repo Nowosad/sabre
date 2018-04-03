@@ -2,14 +2,23 @@
 #'
 #' It calculates the Spatial Association Between REgionalizations (SABRE).
 #'
-#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param x_name A name of the column with regions/clusters names.
-#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param y_name A name of the column with regions/clusters names.
 #' @inheritParams v_measure
 #' @inheritParams sf::st_set_precision
 #'
-#' @return A tibble
+#' @return A tibble with five variables and one row:
+#' * "map1" - the sf object containing the first preprocessed map used for
+#' calculation of GOF with two attributes - `map1` (name of the category)
+#' and `rih` (region inhomogeneity)
+#' * "map2" - the sf object containing the second preprocessed map used for
+#' calculation of GOF with two attributes - `map1` (name of the category)
+#' and `rih` (region inhomogeneity)
+#' * "v_measure"
+#' * "homogeneity"
+#' * "completeness"
 #'
 #' @details DETAILS
 #'

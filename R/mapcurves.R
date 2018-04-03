@@ -2,14 +2,15 @@
 #'
 #' Mapcurves: a quantitative method for comparing categorical maps.
 #'
-#' @param x A numeric vector, representing a categorical values
-#' @param y A numeric vector, representing a categorical values
+#' @param x A numeric vector, representing a categorical values.
+#' @param y A numeric vector, representing a categorical values.
 #' @param z A numeric matrix. The goodness of fit (GOF) value fir each pair of
 #' classes in `x` and `y`. By default this argument is set to `NULL`,
-#' and the value of `z` is calculated based on `x` and `y`
+#' and the value of `z` is calculated based on `x` and `y`.
 #'
-#' @return A list with two elements - "map" (the map to be used as reference
-#' ("x" or "y")) and "gof" (the mapcurves goodness of fit value)
+#' @return A list with two elements:
+#' * "ref_map" - the map to be used as reference ("x" or "y")
+#' * "gof" - the Mapcurves's goodness of fit value
 #'
 #' @references Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
 #' "Mapcurves: a quantitative method for comparing categorical maps."
@@ -62,7 +63,7 @@ mapcurves = function(x, y, z = NULL){
         }
 
         # result
-        result = list(map = map, gof = gof)
+        result = list(ref_map = map, gof = gof)
         return(result)
 }
 area_under_curve = function(x, y){

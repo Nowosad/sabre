@@ -2,16 +2,19 @@
 #'
 #' A conditional entropy-based external cluster evaluation measure.
 #'
-#' @param x A numeric vector, representing a categorical values
-#' @param y A numeric vector, representing a categorical values
+#' @param x A numeric vector, representing a categorical values.
+#' @param y A numeric vector, representing a categorical values.
 #' @param z A numeric matrix. A contingency table of the counts at each
 #' combination of categorical levels. By default this argument is set to `NULL`,
-#' and the value of `z` is calculated based on `x` and `y`
+#' and the value of `z` is calculated based on `x` and `y`.
 #' @param B A numeric value. If `B` > 1 then completeness is weighted more strongly than
 #' homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than
-#' completeness. By default this value is 1
+#' completeness. By default this value is 1.
 #'
-#' @return A list with three elements - "vmeasure", "homogeneity", and "completeness"
+#' @return A list with three elements:
+#' * "v_measure"
+#' * "homogeneity"
+#' * "completeness"
 #'
 #' @references Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 #' A conditional entropy-based external cluster evaluation measure." Proceedings
@@ -49,6 +52,6 @@ v_measure = function(x, y, z = NULL, B = 1){
   } else {
     v = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
   }
-  result = list(vmeasure = v, homogeneity = homogeneity, completeness = completeness)
+  result = list(v_measure = v, homogeneity = homogeneity, completeness = completeness)
   return(result)
 }

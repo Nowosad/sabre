@@ -7,20 +7,25 @@
 v_measure(x, y, z = NULL, B = 1)
 }
 \arguments{
-\item{x}{A numeric vector, representing a categorical values}
+\item{x}{A numeric vector, representing a categorical values.}
 
-\item{y}{A numeric vector, representing a categorical values}
+\item{y}{A numeric vector, representing a categorical values.}
 
 \item{z}{A numeric matrix. A contingency table of the counts at each
 combination of categorical levels. By default this argument is set to \code{NULL},
-and the value of \code{z} is calculated based on \code{x} and \code{y}}
+and the value of \code{z} is calculated based on \code{x} and \code{y}.}
 
 \item{B}{A numeric value. If \code{B} > 1 then completeness is weighted more strongly than
 homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
-completeness. By default this value is 1}
+completeness. By default this value is 1.}
 }
 \value{
-A list with three elements - "vmeasure", "homogeneity", and "completeness"
+A list with three elements:
+\itemize{
+\item "v_measure"
+\item "homogeneity"
+\item "completeness"
+}
 }
 \description{
 A conditional entropy-based external cluster evaluation measure.

@@ -7,18 +7,24 @@
 mapcurves_calc(x, x_name, y, y_name, precision = NULL)
 }
 \arguments{
-\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
 \item{x_name}{A name of the column with regions/clusters names.}
 
-\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
 \item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A tibble
+A tibble with four variables and one row:
+\itemize{
+\item "map1" - the sf object containing the first map used for calculation of GOF
+\item "map2" - the sf object containing the second map used for calculation of GOF
+\item "ref_map" - the map to be used as reference ("x" or "y")
+\item "gof" - the Mapcurves's goodness of fit value
+}
 }
 \description{
 It calculates the Mapcurves's goodness-of-fit (GOF)
@@ -32,6 +38,8 @@ data("regions1")
 data("regions2")
 
 mc = mapcurves_calc(regions1, z, regions2, z)
+plot(mc$map1[[1]])
+plot(mc$map2[[1]])
 
 }
 \references{

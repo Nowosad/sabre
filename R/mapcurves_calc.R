@@ -2,13 +2,17 @@
 #'
 #' It calculates the Mapcurves's goodness-of-fit (GOF)
 #'
-#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param x_name A name of the column with regions/clusters names.
-#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param y_name A name of the column with regions/clusters names.
 #' @inheritParams sf::st_set_precision
 #'
-#' @return A tibble
+#' @return A tibble with four variables and one row:
+#' * "map1" - the sf object containing the first map used for calculation of GOF
+#' * "map2" - the sf object containing the second map used for calculation of GOF
+#' * "ref_map" - the map to be used as reference ("x" or "y")
+#' * "gof" - the Mapcurves's goodness of fit value
 #'
 #' @details DETAILS
 #'
@@ -27,6 +31,8 @@
 #' data("regions2")
 #'
 #' mc = mapcurves_calc(regions1, z, regions2, z)
+#' plot(mc$map1[[1]])
+#' plot(mc$map2[[1]])
 #'
 #' @export
 mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
@@ -67,6 +73,6 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
 
   mapcurves_result = mapcurves(z = z)
   result = data_frame(map1 = list(x), map2 = list(y),
-                      final_map = mapcurves_result$map, gof = mapcurves_result$gof)
+                      ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
   return(result)
 }

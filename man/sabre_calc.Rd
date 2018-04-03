@@ -7,22 +7,31 @@
 sabre_calc(x, x_name, y, y_name, B = 1, precision = NULL)
 }
 \arguments{
-\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
 \item{x_name}{A name of the column with regions/clusters names.}
 
-\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
 \item{B}{A numeric value. If \code{B} > 1 then completeness is weighted more strongly than
 homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
-completeness. By default this value is 1}
+completeness. By default this value is 1.}
 
 \item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
 \value{
-A tibble
+A tibble with five variables and one row:
+\itemize{
+\item "map1" - the sf object containing the first map used for calculation of GOF
+with two attributes - \code{map1} (name of the category) and \code{rih} (region inhomogeneity)
+\item "map2" - the sf object containing the second map used for calculation of GOF
+with two attributes - \code{map1} (name of the category) and \code{rih} (region inhomogeneity)
+\item "v_measure"
+\item "homogeneity"
+\item "completeness"
+}
 }
 \description{
 It calculates the Spatial Association Between REgionalizations (SABRE).
