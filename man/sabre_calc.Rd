@@ -17,7 +17,7 @@ sabre_calc(x, x_name, y, y_name, B = 1, precision = NULL)
 
 \item{B}{A numeric value. If \code{B} > 1 then completeness is weighted more strongly than
 homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
-completeness}
+completeness. By default this value is 1}
 
 \item{precision}{numeric; see \link{st_as_binary} for how to do this.}
 }
