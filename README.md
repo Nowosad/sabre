@@ -38,7 +38,7 @@ data("regions2")
 
 The first map, `regions1` consists of four regions of the same shape and size, while the second one, `regions2` has three irregular regions.
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /><img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-2-2.png" width="50%" />
 
 The `sabre_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:
 
@@ -69,16 +69,11 @@ regions_vm
 Both spatial outputs have two columns. The first one contains regions' names/values and the second one (`rih`) describes regions' inhomogeneities.
 
 ``` r
-plot(regions_vm$map1["rih"])
+plot(regions_vm$map1["rih"], main = "Map1: rih")
+plot(regions_vm$map2["rih"], main = "Map2: rih")
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
-
-``` r
-plot(regions_vm$map2["rih"])
-```
-
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
 
 See the package vignette for more examples.
 
