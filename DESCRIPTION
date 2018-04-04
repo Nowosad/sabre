@@ -18,7 +18,9 @@ LazyData: true
 ByteCompile: true
 Suggests: 
     testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1.9000
 Depends: R (>= 3.3.0)
@@ -29,3 +31,4 @@ Imports:
     dplyr,
     rlang,
     tibble
+VignetteBuilder: knitr

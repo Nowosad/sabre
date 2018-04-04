@@ -11,7 +11,7 @@
 #' @return A list with four elements:
 #' * "map1" - the sf object containing the first map used for calculation of GOF
 #' * "map2" - the sf object containing the second map used for calculation of GOF
-#' * "ref_map" - the map to be used as reference ("x" or "y")
+#' * "ref_map" - the map used as a reference ("x" or "y")
 #' * "gof" - the Mapcurves's goodness of fit value
 #'
 #' @references Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
@@ -84,7 +84,7 @@ format.mapcurves_vector = function(x, ...){
         "The goodness of fit:", round(x$gof, 2), "\n",
         "Reference map:", x$ref_map, "\n\n",
         "The spatial objects could be retrived with:\n",
-        "$map1", " - the first map\n",
+        "$map1", "- the first map\n",
         "$map2", "- the second map")
 }
 
