@@ -30,24 +30,8 @@ Examples
 ``` r
 library(sabre)
 library(sf)
-#> Linking to GEOS 3.6.1, GDAL 2.2.1, proj.4 4.9.3
 data("regions1")
 data("regions2")
-```
-
-``` r
-library(tmap)
-rm1 = tm_shape(regions1) + tm_polygons("z")
-rm2 = tm_shape(regions2) + tm_polygons("z")
-tmap_arrange(rm1, rm2)
-#> Warning: Currect projection of shape regions1 unknown. Long-lat (WGS84) is
-#> assumed.
-#> Warning: Currect projection of shape regions2 unknown. Long-lat (WGS84) is
-#> assumed.
-#> Warning: Currect projection of shape regions1 unknown. Long-lat (WGS84) is
-#> assumed.
-#> Warning: Currect projection of shape regions2 unknown. Long-lat (WGS84) is
-#> assumed.
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
@@ -55,20 +39,19 @@ tmap_arrange(rm1, rm2)
 ``` r
 regions_vm = sabre_calc(regions1, z, regions2, z)
 regions_vm
-#> # A tibble: 1 x 5
-#>   map1         map2         v_measure homogeneity completeness
-#>   <list>       <list>           <dbl>       <dbl>        <dbl>
-#> 1 <sf [4 × 3]> <sf [3 × 3]>     0.361       0.315        0.423
+#> The SABRE results:
+#> 
+#>  V-measure: 0.36 
+#>  Homogeneity: 0.32 
+#>  Completeness: 0.42 
+#> 
+#>  The spatial objects could be retrived with:
+#>  $map1  - the first map
+#>  $map2 - the second map
 ```
 
 ``` r
 data("eco_us")
-```
-
-``` r
-em1 = tm_shape(eco_us) + tm_fill("PROVINCE", legend.show = FALSE)
-em2 = tm_shape(eco_us) + tm_fill("SECTION", legend.show = FALSE)
-tmap_arrange(em1, em2)
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
@@ -76,10 +59,15 @@ tmap_arrange(em1, em2)
 ``` r
 eco_us_vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)
 eco_us_vm
-#> # A tibble: 1 x 5
-#>   map1          map2           v_measure homogeneity completeness
-#>   <list>        <list>             <dbl>       <dbl>        <dbl>
-#> 1 <sf [35 × 3]> <sf [164 × 3]>     0.797       1.000        0.663
+#> The SABRE results:
+#> 
+#>  V-measure: 0.8 
+#>  Homogeneity: 1 
+#>  Completeness: 0.66 
+#> 
+#>  The spatial objects could be retrived with:
+#>  $map1  - the first map
+#>  $map2 - the second map
 ```
 
 References

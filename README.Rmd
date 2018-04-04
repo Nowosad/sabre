@@ -40,18 +40,18 @@ devtools::install_github("Nowosad/sabre")
 ```
 ## Examples
 
-```{r}
+```{r, message=FALSE}
 library(sabre)
 library(sf)
 data("regions1")
 data("regions2")
 ```
 
-```{r}
+```{r, warning=FALSE, echo=FALSE}
 library(tmap)
-rm1 = tm_shape(regions1) + tm_polygons("z")
-rm2 = tm_shape(regions2) + tm_polygons("z")
-tmap_arrange(rm1, rm2)
+rm1 = tm_shape(regions1) + tm_polygons("z", palette = "Set2") + tm_layout(title = "First regionalization")
+rm2 = tm_shape(regions2) + tm_polygons("z", palette = "Set3") + tm_layout(title = "Second regionalization")
+tmap_arrange(rm1, rm2) 
 ```
 
 ```{r}
@@ -63,9 +63,9 @@ regions_vm
 data("eco_us")
 ```
 
-```{r}
-em1 = tm_shape(eco_us) + tm_fill("PROVINCE", legend.show = FALSE)
-em2 = tm_shape(eco_us) + tm_fill("SECTION", legend.show = FALSE)
+```{r, echo=FALSE}
+em1 = tm_shape(eco_us) + tm_fill("PROVINCE", legend.show = FALSE) + tm_layout("Ecoregions of the United States: Provinces")
+em2 = tm_shape(eco_us) + tm_fill("SECTION", legend.show = FALSE) + tm_layout("Ecoregions of the United States: Sections")
 tmap_arrange(em1, em2)
 ```
 

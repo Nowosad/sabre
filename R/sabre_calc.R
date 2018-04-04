@@ -104,6 +104,22 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
   sabre_result = list(map1 = x, map2 = y, v_measure = v_result$v_measure,
                       homogeneity = v_result$homogeneity,
                       completeness = v_result$completeness)
+  class(sabre_result) = c("sabre_vector")
   return(sabre_result)
 }
 
+#' @export
+format.sabre_vector = function(x, ...){
+  paste("The SABRE results:\n\n",
+        "V-measure:", round(x$v_measure, 2), "\n",
+        "Homogeneity:", round(x$homogeneity, 2), "\n",
+        "Completeness:", round(x$completeness, 2), "\n\n",
+        "The spatial objects could be retrived with:\n",
+        "$map1", " - the first map\n",
+        "$map2", "- the second map")
+}
+
+#' @export
+print.sabre_vector = function(x, ...){
+  cat(format(x, ...), "\n")
+}

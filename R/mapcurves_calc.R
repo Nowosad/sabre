@@ -29,6 +29,8 @@
 #' data("regions2")
 #'
 #' mc = mapcurves_calc(regions1, z, regions2, z)
+#' mc
+#'
 #' plot(mc$map1)
 #' plot(mc$map2)
 #'
@@ -72,5 +74,21 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
   mapcurves_result = mapcurves(z = z)
   result = list(map1 = x, map2 = y,
                 ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
+  class(result) = c("mapcurves_vector")
   return(result)
+}
+
+#' @export
+format.mapcurves_vector = function(x, ...){
+  paste("The MapCurves results:\n\n",
+        "The goodness of fit:", round(x$gof, 2), "\n",
+        "Reference map:", x$ref_map, "\n\n",
+        "The spatial objects could be retrived with:\n",
+        "$map1", " - the first map\n",
+        "$map2", "- the second map")
+}
+
+#' @export
+print.mapcurves_vector = function(x, ...){
+  cat(format(x, ...), "\n")
 }

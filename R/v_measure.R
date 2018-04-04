@@ -53,5 +53,20 @@ v_measure = function(x, y, z = NULL, B = 1){
     v = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
   }
   result = list(v_measure = v, homogeneity = homogeneity, completeness = completeness)
+  class(result) = c("v_measure")
   return(result)
 }
+
+#' @export
+format.v_measure = function(x, ...){
+  paste("Results:\n\n",
+        "V-measure:", round(x$v_measure, 2), "\n",
+        "Homogeneity:", round(x$homogeneity, 2), "\n",
+        "Completeness:", round(x$completeness, 2))
+}
+
+#' @export
+print.v_measure = function(x, ...){
+  cat(format(x, ...), "\n")
+}
+

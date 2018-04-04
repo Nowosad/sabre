@@ -64,8 +64,21 @@ mapcurves = function(x, y, z = NULL){
 
         # result
         result = list(ref_map = map, gof = gof)
+        class(result) = c("mapcurves")
         return(result)
 }
 area_under_curve = function(x, y){
         sum(diff(x) * (head(y, -1) + tail(y, -1))) / 2
+}
+
+#' @export
+format.mapcurves = function(x, ...){
+  paste("Results:\n\n",
+        "The goodness of fit:", round(x$gof, 2), "\n",
+        "Reference map:", x$ref_map)
+}
+
+#' @export
+print.mapcurves = function(x, ...){
+  cat(format(x, ...), "\n")
 }
