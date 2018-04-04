@@ -86,7 +86,7 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 plot(regions_vm$map1["rih"], main = "Map1: rih"); plot(regions_vm$map2["rih"], main = "Map2: rih")
 ```
 
-See the package vignette for more examples.
+See [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html) for more examples.
 
 ## References
 

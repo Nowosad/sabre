@@ -62,12 +62,38 @@
     
     
 <div class="contents">
+<!--Introduction-->
+<!--Jakub Nowosad and Tomasz Stepinski (2018). sabre: Spatial Association Between REgionalizations. R package version 0.1.0.-->
+<p>The <strong>sabre</strong> (<strong>S</strong>patial <strong>A</strong>ssociation <strong>B</strong>etween <strong>RE</strong>gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps. This package offers support for <code>sf</code> spatial objects, and the following methods:</p>
+<ul>
+<li>the V-measure method <!--ref to our paper-->
+</li>
+<li>the MapCurve method (Hargrove et al., 2006)</li>
+</ul>
+<div id="basic-example---sabre" class="section level1">
+<h1 class="hasAnchor">
+<a href="#basic-example---sabre" class="anchor"></a>Basic example - SABRE</h1>
+<p>Two simple regionalizations would be used to show the basic concept of <strong>sabre</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sabre)
 <span class="kw">library</span>(sf)
 <span class="kw">data</span>(<span class="st">"regions1"</span>)
 <span class="kw">data</span>(<span class="st">"regions2"</span>)</code></pre></div>
-<p><img src="sabre_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/sabre_calc.html">sabre_calc</a></span>(regions1, z, regions2, z)
+<p>The first map, <code>regions1</code>, has four regions (“r1”, “r2”, “r3”, “r4”) of the same size and shape. The second one, <code>regions2</code>, contains three irregular regions where “z1” is the smallest and “z3” being the largest. Our goal is to compare these two regionalizations and calculate a degree of spatial association between them.</p>
+<p><img src="sabre_files/figure-html/unnamed-chunk-2-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-2-2.png" width="45%"></p>
+<p>It can be done with <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code>, which calculates “V-measure”, “Homogeneity”, and “Completeness” and returns two preprocessed input maps. This function requires, at least, four arguments:</p>
+<ul>
+<li>
+<code>x</code> - an <code>sf</code> object containing the first regionalization</li>
+<li>
+<code>x_name</code> - a name of the column with regions names of the first regionalization</li>
+<li>
+<code>y</code> - an <code>sf</code> object containing the second regionalization</li>
+<li>
+<code>y_name</code> - a name of the column with regions names of the second regionalization</li>
+</ul>
+<p>Importantly, both <code>x</code> and <code>y</code> must contain <code>POLYGON</code>s or <code>MULTIPOLYGON</code>s and have the same coordinate reference system.</p>
+<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function internally calculates intersections of the input geometries using <code><a href="http://www.rdocumentation.org/packages/sf/topics/geos_binary_ops">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)
 regions_vm
 <span class="co">#&gt; The SABRE results:</span>
 <span class="co">#&gt; </span>
@@ -76,225 +102,35 @@ regions_vm
 <span class="co">#&gt;  Completeness: 0.42 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  The spatial objects could be retrived with:</span>
-<span class="co">#&gt;  $map1  - the first map</span>
+<span class="co">#&gt;  $map1 - the first map</span>
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"eco_us"</span>)</code></pre></div>
-<p><img src="sabre_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eco_us_vm =<span class="st"> </span><span class="kw"><a href="../reference/sabre_calc.html">sabre_calc</a></span>(eco_us, PROVINCE, eco_us, SECTION)
-eco_us_vm
-<span class="co">#&gt; The SABRE results:</span>
+<p>The result is a list with three metrics of spatial association - <code>V-measure</code>, <code>Homogeneity</code>, <code>Completeness</code> - and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. All of the above metrics are between 0 and 1, where larger values are desired. <code>V-measure</code> is a measure of an overall spatial correspondence between input maps. <code>Homogeneity</code> shows an average homogeneity of the regions in the second map with respect to the regions in the first map. <code>Completeness</code> is a function of homogeneity of the regions in the first map with respect to the regions in the second map. The spatial outputs, <code>$map1</code> and <code>$map2</code>, have two columns. The first one contains regions’ names and the second one (<code>rih</code>) describes regions’ inhomogeneities. Geometries of these spatial outputs show intersections of the two input regionalizations.</p>
+<p><img src="sabre_files/figure-html/unnamed-chunk-4-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-4-2.png" width="45%"></p>
+<p>For example, “Map1” shows that three regions have the same inhomogeneity of 0.48. This is due a fact that all of these three have two regions from the second map. The upper left region has a larger inhomogeneity of 0.86 as its area “belongs” to three different regions in the second map.</p>
+</div>
+<div id="basic-example---mapcurves" class="section level1">
+<h1 class="hasAnchor">
+<a href="#basic-example---mapcurves" class="anchor"></a>Basic example - MapCurves</h1>
+<p>The <strong>sabre</strong> also allows for calculating a degree of spatial association between regionalizations using the MapCurve method (Hargrove et al., 2006). The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> function also requires four arguments, <code>x</code>, <code>x_name</code>, <code>y</code>, and <code>y_name</code>. It also accepts an additional argument - <code>precision</code>. All of these arguments are explained in the previous section.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_mc =<span class="st"> </span><span class="kw"><a href="../reference/mapcurves_calc.html">mapcurves_calc</a></span>(regions1, z, regions2, z)
+regions_mc
+<span class="co">#&gt; The MapCurves results:</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;  V-measure: 0.8 </span>
-<span class="co">#&gt;  Homogeneity: 1 </span>
-<span class="co">#&gt;  Completeness: 0.66 </span>
+<span class="co">#&gt;  The goodness of fit: 0.61 </span>
+<span class="co">#&gt;  Reference map: x </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  The spatial objects could be retrived with:</span>
-<span class="co">#&gt;  $map1  - the first map</span>
+<span class="co">#&gt;  $map1 - the first map</span>
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
-<p>Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The <code>html_vignette</code> output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The <code>html_vignette</code> format:</p>
+<p>The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> returns a list with a value of the goodness of fit (GOF), the map used as a reference, and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. Read Hargrove et al. (2006) to learn more about this method.</p>
+</div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
 <ul>
-<li>Never uses retina figures</li>
-<li>Has a smaller default figure size</li>
-<li>Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style</li>
+<li>Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional entropy-based external cluster evaluation measure.” Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.</li>
+<li>Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. “Mapcurves: a quantitative method for comparing categorical maps.” Journal of Geographical Systems 8.2 (2006): 187.</li>
 </ul>
-<div id="vignette-info" class="section level2">
-<h2 class="hasAnchor">
-<a href="#vignette-info" class="anchor"></a>Vignette Info</h2>
-<p>Note the various macros within the <code>vignette</code> section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the <code>title</code> field and the <code>\VignetteIndexEntry</code> to match the title of your vignette.</p>
-</div>
-<div id="styles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#styles" class="anchor"></a>Styles</h2>
-<p>The <code>html_vignette</code> template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:</p>
-<pre><code>output: 
-  rmarkdown::html_vignette:
-    css: mystyles.css</code></pre>
-</div>
-<div id="figures" class="section level2">
-<h2 class="hasAnchor">
-<a href="#figures" class="anchor"></a>Figures</h2>
-<p>The figure sizes have been customised so that you can easily put two images side-by-side.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
-<p><img src="sabre_files/figure-html/unnamed-chunk-7-1.png" width="672"><img src="sabre_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
-<p>You can enable figure captions by <code>fig_caption: yes</code> in YAML:</p>
-<pre><code>output:
-  rmarkdown::html_vignette:
-    fig_caption: yes</code></pre>
-<p>Then you can use the chunk option <code>fig.cap = "Your figure caption."</code> in <strong>knitr</strong>.</p>
-</div>
-<div id="more-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-examples" class="anchor"></a>More Examples</h2>
-<p>You can write math expressions, e.g. <span class="math inline">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">knitr::kable()</a></code>.</p>
-<table class="table">
-<thead><tr class="header">
-<th></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td>Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td>Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-</tbody>
-</table>
-<p>Also a quote using <code>&gt;</code>:</p>
-<blockquote>
-<p>“He who gives up [code] safety for [code] speed deserves neither.” (<a href="https://twitter.com/hadleywickham/status/504368538874703872">via</a>)</p>
-</blockquote>
-</div>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn1"><p>A footnote here.<a href="#fnref1">↩</a></p></li>
-</ol>
 </div>
 </div>
   </div>
@@ -304,10 +140,9 @@ eco_us_vm
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#vignette-info">Vignette Info</a></li>
-      <li><a href="#styles">Styles</a></li>
-      <li><a href="#figures">Figures</a></li>
-      <li><a href="#more-examples">More Examples</a></li>
+<li><a href="#basic-example---sabre">Basic example - SABRE</a></li>
+      <li><a href="#basic-example---mapcurves">Basic example - MapCurves</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>

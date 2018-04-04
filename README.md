@@ -75,7 +75,7 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
 
-See the package vignette for more examples.
+See [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html) for more examples.
 
 References
 ----------

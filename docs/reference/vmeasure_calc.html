@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mapcurves calculation — mapcurves_calc • sabre</title>
+<title>SABRE calculation — vmeasure_calc • sabre</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -78,14 +78,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mapcurves calculation</h1>
+    <h1>SABRE calculation</h1>
     </div>
 
     
-    <p>It calculates the Mapcurves's goodness-of-fit (GOF)</p>
+    <p>It calculates the Spatial Association Between REgionalizations (SABRE).</p>
     
 
-    <pre class="usage"><span class='fu'>mapcurves_calc</span>(<span class='no'>x</span>, <span class='no'>x_name</span>, <span class='no'>y</span>, <span class='no'>y_name</span>, <span class='kw'>precision</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>vmeasure_calc</span>(<span class='no'>x</span>, <span class='no'>x_name</span>, <span class='no'>y</span>, <span class='no'>y_name</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>precision</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -107,6 +107,12 @@
       <td><p>A name of the column with regions/clusters names.</p></td>
     </tr>
     <tr>
+      <th>B</th>
+      <td><p>A numeric value. If <code>B</code> &gt; 1 then completeness is weighted more strongly than
+homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than
+completeness. By default this value is 1.</p></td>
+    </tr>
+    <tr>
       <th>precision</th>
       <td><p>numeric; see st_as_binary for how to do this.</p></td>
     </tr>
@@ -114,36 +120,45 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with four elements:</p><ul>
-<li><p>"map1" - the sf object containing the first map used for calculation of GOF</p></li>
-<li><p>"map2" - the sf object containing the second map used for calculation of GOF</p></li>
-<li><p>"ref_map" - the map used as a reference ("x" or "y")</p></li>
-<li><p>"gof" - the Mapcurves's goodness of fit value</p></li>
+    <p>A list with five elements:</p><ul>
+<li><p>"map1" - the sf object containing the first preprocessed map used for
+calculation of GOF with two attributes - <code>map1</code> (name of the category)
+and <code>rih</code> (region inhomogeneity)</p></li>
+<li><p>"map2" - the sf object containing the second preprocessed map used for
+calculation of GOF with two attributes - <code>map1</code> (name of the category)
+and <code>rih</code> (region inhomogeneity)</p></li>
+<li><p>"v_measure"</p></li>
+<li><p>"homogeneity"</p></li>
+<li><p>"completeness"</p></li>
 </ul>
 
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
-"Mapcurves: a quantitative method for comparing categorical maps."
-Journal of Geographical Systems 8.2 (2006): 187.</p>
+    <p>Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+spatial association between regionalizations or categorical maps using the
+information-theoretical V-measure."</p>
+<p>Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
+A conditional entropy-based external cluster evaluation measure." Proceedings
+of the 2007 joint conference on empirical methods in natural language
+processing and computational natural language learning (EMNLP-CoNLL). 2007.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>sf</span>)
 <span class='fu'>data</span>(<span class='st'>"regions1"</span>)
 <span class='fu'>data</span>(<span class='st'>"regions2"</span>)
-
-<span class='no'>mc</span> <span class='kw'>=</span> <span class='fu'>mapcurves_calc</span>(<span class='no'>regions1</span>, <span class='no'>z</span>, <span class='no'>regions2</span>, <span class='no'>z</span>)
-<span class='no'>mc</span></div><div class='output co'>#&gt; The MapCurves results:
+<span class='no'>vm</span> <span class='kw'>=</span> <span class='fu'>vmeasure_calc</span>(<span class='no'>regions1</span>, <span class='no'>z</span>, <span class='no'>regions2</span>, <span class='no'>z</span>)
+<span class='no'>vm</span></div><div class='output co'>#&gt; The SABRE results:
 #&gt; 
-#&gt;  The goodness of fit: 0.61 
-#&gt;  Reference map: x 
+#&gt;  V-measure: 0.36 
+#&gt;  Homogeneity: 0.32 
+#&gt;  Completeness: 0.42 
 #&gt; 
 #&gt;  The spatial objects could be retrived with:
 #&gt;  $map1 - the first map
 #&gt;  $map2 - the second map </div><div class='input'>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>mc</span>$<span class='no'>map1</span>)</div><div class='img'><img src='mapcurves_calc-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>mc</span>$<span class='no'>map2</span>)</div><div class='img'><img src='mapcurves_calc-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>vm</span>$<span class='no'>map1</span>[<span class='st'>"rih"</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: n same as number of different finite values\neach different finite value is a separate class</span></div><div class='img'><img src='vmeasure_calc-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>(<span class='no'>vm</span>$<span class='no'>map2</span>[<span class='st'>"rih"</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: n same as number of different finite values\neach different finite value is a separate class</span></div><div class='img'><img src='vmeasure_calc-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

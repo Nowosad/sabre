@@ -87,8 +87,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="kw">data</span>(<span class="st">"regions1"</span>)
 <span class="kw">data</span>(<span class="st">"regions2"</span>)</code></pre></div>
 <p>The first map, <code>regions1</code> consists of four regions of the same shape and size, while the second one, <code>regions2</code> has three irregular regions.</p>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"><img src="reference/figures/README-unnamed-chunk-2-2.png" width="100%"></p>
-<p>The <code><a href="reference/sabre_calc.html">sabre_calc()</a></code> function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:</p>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-2-2.png" width="50%"></p>
+<p>The <code><a href="reference/vmeasure_calc.html">vmeasure_calc()</a></code> function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:</p>
 <ul>
 <li>
 <code>x</code> - an <code>sf</code> object containing the first regionalization</li>
@@ -99,7 +99,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li>
 <code>y_name</code> - a name of the column with regions names of the second regionalization</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="reference/sabre_calc.html">sabre_calc</a></span>(regions1, z, regions2, z)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)</code></pre></div>
 <p>The result is a list with three metrics of spatial association - <code>V-measure</code>, <code>Homogeneity</code>, <code>Completeness</code> - and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm
 <span class="co">#&gt; The SABRE results:</span>
@@ -109,13 +109,12 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <span class="co">#&gt;  Completeness: 0.42 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  The spatial objects could be retrived with:</span>
-<span class="co">#&gt;  $map1  - the first map</span>
+<span class="co">#&gt;  $map1 - the first map</span>
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>Both spatial outputs have two columns. The first one contains regions’ names/values and the second one (<code>rih</code>) describes regions’ inhomogeneities.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map1[<span class="st">"rih"</span>])</code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map2[<span class="st">"rih"</span>])</code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="100%"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map1[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map1: rih"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map2[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map2: rih"</span>)</code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-6-2.png" width="50%"></p>
 <p>See the package vignette for more examples.</p>
 </div>
 <div id="references" class="section level2">
