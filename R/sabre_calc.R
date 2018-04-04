@@ -115,7 +115,7 @@ format.sabre_vector = function(x, ...){
         "Homogeneity:", round(x$homogeneity, 2), "\n",
         "Completeness:", round(x$completeness, 2), "\n\n",
         "The spatial objects could be retrived with:\n",
-        "$map1", " - the first map\n",
+        "$map1", "- the first map\n",
         "$map2", "- the second map")
 }
 
