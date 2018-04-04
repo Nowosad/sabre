@@ -56,7 +56,7 @@ plot(regions1, main = "regions1")
 plot(regions2, main = "regions2")
 ```
 
-The `sabre_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure.
+The `vmeasure_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure.
 It requires, at least, four arguments:
 
 * `x` - an `sf` object containing the first regionalization
@@ -65,7 +65,7 @@ It requires, at least, four arguments:
 * `y_name` -  a name of the column with regions names of the second regionalization
 
 ```{r}
-regions_vm = sabre_calc(regions1, z, regions2, z)
+regions_vm = vmeasure_calc(regions1, z, regions2, z)
 ```
 
 The result is a list with three metrics of spatial association - `V-measure`, `Homogeneity`, `Completeness` - and two `sf` objects with preprocessed input maps - `$map1` and `$map2`.

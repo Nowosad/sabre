@@ -45,7 +45,7 @@ plot(regions1, main = "regions1")
 plot(regions2, main = "regions2")
 ```
 
-It can be done with `sabre_calc()`, which calculates "V-measure", "Homogeneity", and "Completeness" and returns two preprocessed input maps. 
+It can be done with `vmeasure_calc()`, which calculates "V-measure", "Homogeneity", and "Completeness" and returns two preprocessed input maps. 
 This function requires, at least, four arguments:
 
 * `x` - an `sf` object containing the first regionalization
@@ -58,12 +58,12 @@ Importantly, both `x` and `y` must contain `POLYGON`s or `MULTIPOLYGON`s and hav
 There are also two additional arguments - `B` and `precision`.
 If `B` > 1 then completeness is weighted more strongly than homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than completeness.
 By default this value is 1.
-The `sabre_calc()` function internally calculates intersections of the input geometries using `sf::st_intersection()`, which depends on the coordinates values precision. 
-The `precision` argument can be used when `sabre_calc` produces an error.
+The `vmeasure_calc()` function internally calculates intersections of the input geometries using `sf::st_intersection()`, which depends on the coordinates values precision. 
+The `precision` argument can be used when `vmeasure_calc` produces an error.
 For example, `precision = 1000` rounds values to the third decimal places and `precision = 0.001` uses values rounded to the nearest 1000.
 
 ```{r}
-regions_vm = sabre_calc(regions1, z, regions2, z)
+regions_vm = vmeasure_calc(regions1, z, regions2, z)
 regions_vm
 ```
 

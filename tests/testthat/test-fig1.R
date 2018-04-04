@@ -2,7 +2,7 @@ context("test-eco-us.R")
 data("regions1")
 data("regions2")
 
-vm = sabre_calc(regions1, z, regions2, z)
+vm = vmeasure_calc(regions1, z, regions2, z)
 mc = mapcurves_calc(regions1, z, regions2, z)
 
 test_that("sabre works on vector", {

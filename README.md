@@ -40,7 +40,7 @@ The first map, `regions1` consists of four regions of the same shape and size, w
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-2-2.png" width="50%" />
 
-The `sabre_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:
+The `vmeasure_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:
 
 -   `x` - an `sf` object containing the first regionalization
 -   `x_name` - a name of the column with regions names of the first regionalization
@@ -48,7 +48,7 @@ The `sabre_calc()` function allows for calculation of a degree of spatial associ
 -   `y_name` - a name of the column with regions names of the second regionalization
 
 ``` r
-regions_vm = sabre_calc(regions1, z, regions2, z)
+regions_vm = vmeasure_calc(regions1, z, regions2, z)
 ```
 
 The result is a list with three metrics of spatial association - `V-measure`, `Homogeneity`, `Completeness` - and two `sf` objects with preprocessed input maps - `$map1` and `$map2`.
@@ -62,7 +62,7 @@ regions_vm
 #>  Completeness: 0.42 
 #> 
 #>  The spatial objects could be retrived with:
-#>  $map1  - the first map
+#>  $map1 - the first map
 #>  $map2 - the second map
 ```
 

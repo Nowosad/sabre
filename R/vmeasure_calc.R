@@ -6,7 +6,7 @@
 #' @param x_name A name of the column with regions/clusters names.
 #' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param y_name A name of the column with regions/clusters names.
-#' @inheritParams v_measure
+#' @inheritParams vmeasure
 #' @inheritParams sf::st_set_precision
 #'
 #' @return A list with five elements:
@@ -38,14 +38,14 @@
 #' library(sf)
 #' data("regions1")
 #' data("regions2")
-#' vm = sabre_calc(regions1, z, regions2, z)
+#' vm = vmeasure_calc(regions1, z, regions2, z)
 #' vm
 #'
 #' plot(vm$map1["rih"])
 #' plot(vm$map2["rih"])
 #'
 #' @export
-sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
+vmeasure_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -99,17 +99,17 @@ sabre_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
   # B = 1
   # vmeasure = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
 
-  v_result = v_measure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
+  v_result = vmeasure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
   # sabre_result = list(x, y, v_result)
   sabre_result = list(map1 = x, map2 = y, v_measure = v_result$v_measure,
                       homogeneity = v_result$homogeneity,
                       completeness = v_result$completeness)
-  class(sabre_result) = c("sabre_vector")
+  class(sabre_result) = c("vmeasure_vector")
   return(sabre_result)
 }
 
 #' @export
-format.sabre_vector = function(x, ...){
+format.vmeasure_vector = function(x, ...){
   paste("The SABRE results:\n\n",
         "V-measure:", round(x$v_measure, 2), "\n",
         "Homogeneity:", round(x$homogeneity, 2), "\n",
@@ -120,6 +120,6 @@ format.sabre_vector = function(x, ...){
 }
 
 #' @export
-print.sabre_vector = function(x, ...){
+print.vmeasure_vector = function(x, ...){
   cat(format(x, ...), "\n")
 }

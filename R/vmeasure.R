@@ -26,10 +26,10 @@
 #' @examples
 #' x = c(1, 1, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 3, 3)
 #' y = c(rep(1, 5), rep(2, 5), rep(3, 5))
-#' v_measure(x, y)
+#' vmeasure(x, y)
 #'
 #' @export
-v_measure = function(x, y, z = NULL, B = 1){
+vmeasure = function(x, y, z = NULL, B = 1){
   entropy_x = entropy.empirical(x / length(x), unit = "log2")
   entropy_y = entropy.empirical(y / length(y), unit = "log2")
   if (is.null(z)){
@@ -53,12 +53,12 @@ v_measure = function(x, y, z = NULL, B = 1){
     v = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
   }
   result = list(v_measure = v, homogeneity = homogeneity, completeness = completeness)
-  class(result) = c("v_measure")
+  class(result) = c("vmeasure")
   return(result)
 }
 
 #' @export
-format.v_measure = function(x, ...){
+format.vmeasure = function(x, ...){
   paste("Results:\n\n",
         "V-measure:", round(x$v_measure, 2), "\n",
         "Homogeneity:", round(x$homogeneity, 2), "\n",
@@ -66,7 +66,7 @@ format.v_measure = function(x, ...){
 }
 
 #' @export
-print.v_measure = function(x, ...){
+print.vmeasure = function(x, ...){
   cat(format(x, ...), "\n")
 }
 

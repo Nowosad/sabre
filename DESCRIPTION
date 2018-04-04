@@ -1,5 +1,5 @@
 Package: sabre
-Version: 0.1.2
+Version: 0.2.0
 Title: Spatial Association Between REgionalizations 
 Description: Calculates a degree of spatial association between regionalizations 
     or categorical maps using the information-theoretical V-measure. It also

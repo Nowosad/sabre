@@ -22,7 +22,7 @@ A list with four elements:
 \itemize{
 \item "map1" - the sf object containing the first map used for calculation of GOF
 \item "map2" - the sf object containing the second map used for calculation of GOF
-\item "ref_map" - the map to be used as reference ("x" or "y")
+\item "ref_map" - the map used as a reference ("x" or "y")
 \item "gof" - the Mapcurves's goodness of fit value
 }
 }
@@ -35,6 +35,8 @@ data("regions1")
 data("regions2")
 
 mc = mapcurves_calc(regions1, z, regions2, z)
+mc
+
 plot(mc$map1)
 plot(mc$map2)
 
