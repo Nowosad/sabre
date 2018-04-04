@@ -2,7 +2,7 @@
 % Please edit documentation in R/vmeasure_calc.R
 \name{vmeasure_calc}
 \alias{vmeasure_calc}
-\title{SABRE calculation}
+\title{V-measure calculation}
 \usage{
 vmeasure_calc(x, x_name, y, y_name, B = 1, precision = NULL)
 }
@@ -36,7 +36,8 @@ and \code{rih} (region inhomogeneity)
 }
 }
 \description{
-It calculates the Spatial Association Between REgionalizations (SABRE).
+It calculates a degree of spatial association between regionalizations using
+an information-theoretical measure called the V-measure
 }
 \examples{
 library(sf)

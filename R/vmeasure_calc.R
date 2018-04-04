@@ -1,6 +1,7 @@
-#' SABRE calculation
+#' V-measure calculation
 #'
-#' It calculates the Spatial Association Between REgionalizations (SABRE).
+#' It calculates a degree of spatial association between regionalizations using
+#' an information-theoretical measure called the V-measure
 #'
 #' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
 #' @param x_name A name of the column with regions/clusters names.
