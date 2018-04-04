@@ -13,7 +13,7 @@ The **sabre** (**S**patial **A**ssociation **B**etween **RE**gionalizations) is 
 Installation
 ------------
 
-<!-- You can install the released version of sabre from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of `sabre` from [CRAN](https://CRAN.R-project.org) with: -->
 <!-- ``` r -->
 <!-- install.packages("sabre") -->
 <!-- ``` -->
@@ -24,8 +24,10 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("Nowosad/sabre")
 ```
 
-Examples
---------
+Example
+-------
+
+We use two simple regionalization, `regions1` and `regions2` to show the basic concept of calculating a degree of spatial association.
 
 ``` r
 library(sabre)
@@ -34,10 +36,24 @@ data("regions1")
 data("regions2")
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+The first map, `regions1` consists of four regions of the same shape and size, while the second one, `regions2` has three irregular regions.
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /><img src="man/figures/README-unnamed-chunk-2-2.png" width="100%" />
+
+The `sabre_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:
+
+-   `x` - an `sf` object containing the first regionalization
+-   `x_name` - a name of the column with regions names of the first regionalization
+-   `y` - an `sf` object containing the second regionalization
+-   `y_name` - a name of the column with regions names of the second regionalization
 
 ``` r
 regions_vm = sabre_calc(regions1, z, regions2, z)
+```
+
+The result is a list with three metrics of spatial association - `V-measure`, `Homogeneity`, `Completeness` - and two `sf` objects with preprocessed input maps - `$map1` and `$map2`.
+
+``` r
 regions_vm
 #> The SABRE results:
 #> 
@@ -50,25 +66,21 @@ regions_vm
 #>  $map2 - the second map
 ```
 
+Both spatial outputs have two columns. The first one contains regions' names/values and the second one (`rih`) describes regions' inhomogeneities.
+
 ``` r
-data("eco_us")
+plot(regions_vm$map1["rih"])
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ``` r
-eco_us_vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)
-eco_us_vm
-#> The SABRE results:
-#> 
-#>  V-measure: 0.8 
-#>  Homogeneity: 1 
-#>  Completeness: 0.66 
-#> 
-#>  The spatial objects could be retrived with:
-#>  $map1  - the first map
-#>  $map2 - the second map
+plot(regions_vm$map2["rih"])
 ```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
+See the package vignette for more examples.
 
 References
 ----------

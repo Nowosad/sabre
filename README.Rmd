@@ -26,7 +26,7 @@ This package offers support for `sf` spatial objects, and the following methods:
 
 ## Installation
 
-<!-- You can install the released version of sabre from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of `sabre` from [CRAN](https://CRAN.R-project.org) with: -->
 
 <!-- ``` r -->
 <!-- install.packages("sabre") -->
@@ -38,7 +38,9 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("Nowosad/sabre")
 ```
-## Examples
+## Example
+
+We use two simple regionalization, `regions1` and `regions2` to show the basic concept of calculating a degree of spatial association. 
 
 ```{r, message=FALSE}
 library(sabre)
@@ -47,32 +49,43 @@ data("regions1")
 data("regions2")
 ```
 
-```{r, warning=FALSE, echo=FALSE}
-library(tmap)
-rm1 = tm_shape(regions1) + tm_polygons("z", palette = "Set2") + tm_layout(title = "First regionalization")
-rm2 = tm_shape(regions2) + tm_polygons("z", palette = "Set3") + tm_layout(title = "Second regionalization")
-tmap_arrange(rm1, rm2) 
+The first map, `regions1` consists of four regions of the same shape and size, while the second one, `regions2` has three irregular regions.
+
+```{r, echo=FALSE}
+plot(regions1, main = "regions1")
+plot(regions2, main = "regions2")
 ```
+
+The `sabre_calc()` function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure.
+It requires, at least, four arguments:
+
+* `x` - an `sf` object containing the first regionalization
+* `x_name` - a name of the column with regions names of the first regionalization
+* `y` - an `sf` object containing the second regionalization
+* `y_name` -  a name of the column with regions names of the second regionalization
 
 ```{r}
 regions_vm = sabre_calc(regions1, z, regions2, z)
+```
+
+The result is a list with three metrics of spatial association - `V-measure`, `Homogeneity`, `Completeness` - and two `sf` objects with preprocessed input maps - `$map1` and `$map2`.
+
+```{r}
 regions_vm
 ```
 
-```{r}
-data("eco_us")
+Both spatial outputs have two columns. 
+The first one contains regions' names/values and the second one (`rih`) describes regions' inhomogeneities.
+
+```{r, warning=FALSE}
+plot(regions_vm$map1["rih"])
 ```
 
-```{r, echo=FALSE}
-em1 = tm_shape(eco_us) + tm_fill("PROVINCE", legend.show = FALSE) + tm_layout("Ecoregions of the United States: Provinces")
-em2 = tm_shape(eco_us) + tm_fill("SECTION", legend.show = FALSE) + tm_layout("Ecoregions of the United States: Sections")
-tmap_arrange(em1, em2)
+```{r, warning=FALSE}
+plot(regions_vm$map2["rih"])
 ```
 
-```{r}
-eco_us_vm = sabre_calc(eco_us, PROVINCE, eco_us, SECTION)
-eco_us_vm
-```
+See the package vignette for more examples.
 
 ## References
 
