@@ -17,12 +17,12 @@ knitr::opts_chunk$set(
 ```
 
 <!--Introduction-->
-<!--Jakub Nowosad and Tomasz Stepinski (2018). sabre: Spatial Association Between REgionalizations. R package version 0.1.0.-->
+<!--Jakub Nowosad and Tomasz Stepinski (2018). sabre: Spatial Association Between REgionalizations. R package version 0.2.0.-->
 
 The **sabre** (**S**patial **A**ssociation **B**etween **RE**gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps.
 This package offers support for `sf` spatial objects, and the following methods:
 
-- the V-measure method <!--ref to our paper-->
+- the V-measure method (Nowosad and Stepinski, 2018)
 - the MapCurve method (Hargrove et al., 2006)
 
 # Basic example - SABRE
@@ -58,7 +58,7 @@ Importantly, both `x` and `y` must contain `POLYGON`s or `MULTIPOLYGON`s and hav
 There are also two additional arguments - `B` and `precision`.
 If `B` > 1 then completeness is weighted more strongly than homogeneity, and if `B` < 1 then homogeneity is weighted more strongly than completeness.
 By default this value is 1.
-The `vmeasure_calc()` function internally calculates intersections of the input geometries using `sf::st_intersection()`, which depends on the coordinates values precision. 
+The `vmeasure_calc()` function calculates intersections of the input geometries internally using `sf::st_intersection()`, which depends on the coordinates values precision. 
 The `precision` argument can be used when `vmeasure_calc` produces an error.
 For example, `precision = 1000` rounds values to the third decimal places and `precision = 0.001` uses values rounded to the nearest 1000.
 
@@ -83,6 +83,7 @@ plot(regions_vm$map1["rih"], main = "Map1: rih"); plot(regions_vm$map2["rih"], m
 For example, "Map1" shows that three regions have the same inhomogeneity of 0.48. 
 This is due a fact that all of these three have two regions from the second map.
 The upper left region has a larger inhomogeneity of 0.86 as its area "belongs" to three different regions in the second map.
+More information about this method and its applications can be found in Nowosad and Stepinski (2018). 
 
 # Basic example - MapCurves
 
@@ -101,5 +102,6 @@ Read Hargrove et al. (2006) to learn more about this method.
 
 # References
 
+- Nowosad, Jakub, and Tomasz Stepinski. "Assessing a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure."
 - Rosenberg, Andrew, and Julia Hirschberg. "V-measure: A conditional entropy-based external cluster evaluation measure." Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.
 - Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. "Mapcurves: a quantitative method for comparing categorical maps." Journal of Geographical Systems 8.2 (2006): 187.

@@ -21,7 +21,7 @@
 #' * "homogeneity"
 #' * "completeness"
 #'
-#' @references Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+#' @references Nowosad, Jakub, and Tomasz Stepinski. "Assessing a degree of
 #' spatial association between regionalizations or categorical maps using the
 #' information-theoretical V-measure."
 #' @references Rosenberg, Andrew, and Julia Hirschberg. "V-measure:

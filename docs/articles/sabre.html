@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
+  <a href="..//index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -56,18 +56,17 @@
       <h1>sabre: Spatial Association Between REgionalizations</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2018-04-04</h4>
+            <h4 class="date">2018-04-15</h4>
           </div>
 
     
     
 <div class="contents">
 <!--Introduction-->
-<!--Jakub Nowosad and Tomasz Stepinski (2018). sabre: Spatial Association Between REgionalizations. R package version 0.1.0.-->
+<!--Jakub Nowosad and Tomasz Stepinski (2018). sabre: Spatial Association Between REgionalizations. R package version 0.2.0.-->
 <p>The <strong>sabre</strong> (<strong>S</strong>patial <strong>A</strong>ssociation <strong>B</strong>etween <strong>RE</strong>gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps. This package offers support for <code>sf</code> spatial objects, and the following methods:</p>
 <ul>
-<li>the V-measure method <!--ref to our paper-->
-</li>
+<li>the V-measure method (Nowosad and Stepinski, 2018)</li>
 <li>the MapCurve method (Hargrove et al., 2006)</li>
 </ul>
 <div id="basic-example---sabre" class="section level1">
@@ -92,7 +91,7 @@
 <code>y_name</code> - a name of the column with regions names of the second regionalization</li>
 </ul>
 <p>Importantly, both <code>x</code> and <code>y</code> must contain <code>POLYGON</code>s or <code>MULTIPOLYGON</code>s and have the same coordinate reference system.</p>
-<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function internally calculates intersections of the input geometries using <code><a href="http://www.rdocumentation.org/packages/sf/topics/geos_binary_ops">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
+<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="http://www.rdocumentation.org/packages/sf/topics/geos_binary_ops">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)
 regions_vm
 <span class="co">#&gt; The SABRE results:</span>
@@ -106,7 +105,7 @@ regions_vm
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>The result is a list with three metrics of spatial association - <code>V-measure</code>, <code>Homogeneity</code>, <code>Completeness</code> - and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. All of the above metrics are between 0 and 1, where larger values are desired. <code>V-measure</code> is a measure of an overall spatial correspondence between input maps. <code>Homogeneity</code> shows an average homogeneity of the regions in the second map with respect to the regions in the first map. <code>Completeness</code> is a function of homogeneity of the regions in the first map with respect to the regions in the second map. The spatial outputs, <code>$map1</code> and <code>$map2</code>, have two columns. The first one contains regions’ names and the second one (<code>rih</code>) describes regions’ inhomogeneities. Geometries of these spatial outputs show intersections of the two input regionalizations.</p>
 <p><img src="sabre_files/figure-html/unnamed-chunk-4-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-4-2.png" width="45%"></p>
-<p>For example, “Map1” shows that three regions have the same inhomogeneity of 0.48. This is due a fact that all of these three have two regions from the second map. The upper left region has a larger inhomogeneity of 0.86 as its area “belongs” to three different regions in the second map.</p>
+<p>For example, “Map1” shows that three regions have the same inhomogeneity of 0.48. This is due a fact that all of these three have two regions from the second map. The upper left region has a larger inhomogeneity of 0.86 as its area “belongs” to three different regions in the second map. More information about this method and its applications can be found in Nowosad and Stepinski (2018).</p>
 </div>
 <div id="basic-example---mapcurves" class="section level1">
 <h1 class="hasAnchor">
@@ -128,6 +127,7 @@ regions_mc
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <ul>
+<li>Nowosad, Jakub, and Tomasz Stepinski. “Assessing a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure.”</li>
 <li>Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional entropy-based external cluster evaluation measure.” Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.</li>
 <li>Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. “Mapcurves: a quantitative method for comparing categorical maps.” Journal of Geographical Systems 8.2 (2006): 187.</li>
 </ul>

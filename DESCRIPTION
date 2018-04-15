@@ -22,7 +22,7 @@ Suggests:
     knitr,
     rmarkdown
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.0.1
 Depends: R (>= 3.3.0)
 Imports: 
     sf,

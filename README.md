@@ -7,7 +7,7 @@ sabre
 
 The **sabre** (**S**patial **A**ssociation **B**etween **RE**gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps. This package offers support for `sf` spatial objects, and the following methods:
 
--   the V-measure method
+-   the V-measure method (Nowosad and Stepinski, 2018)
 -   the MapCurve method (Hargrove et al., 2006)
 
 Installation
@@ -80,5 +80,6 @@ See [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html) 
 References
 ----------
 
+-   Nowosad, Jakub, and Tomasz Stepinski. "Assessing a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure."
 -   Rosenberg, Andrew, and Julia Hirschberg. "V-measure: A conditional entropy-based external cluster evaluation measure." Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.
 -   Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. "Mapcurves: a quantitative method for comparing categorical maps." Journal of Geographical Systems 8.2 (2006): 187.

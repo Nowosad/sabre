@@ -51,7 +51,7 @@ plot(vm$map2["rih"])
 
 }
 \references{
-Stepinski, Tomasz, and Jakub Nowosad. "Assessing a degree of
+Nowosad, Jakub, and Tomasz Stepinski. "Assessing a degree of
 spatial association between regionalizations or categorical maps using the
 information-theoretical V-measure."
 
