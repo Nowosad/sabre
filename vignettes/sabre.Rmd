@@ -102,6 +102,6 @@ Read Hargrove et al. (2006) to learn more about this method.
 
 # References
 
-- Nowosad, Jakub, and Tomasz Stepinski. "Assessing a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure."
+- Nowosad, Jakub, and Tomasz Stepinski. "Spatial association between regionalizations using the information-theoretical V-measure"
 - Rosenberg, Andrew, and Julia Hirschberg. "V-measure: A conditional entropy-based external cluster evaluation measure." Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.
 - Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. "Mapcurves: a quantitative method for comparing categorical maps." Journal of Geographical Systems 8.2 (2006): 187.
