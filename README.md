@@ -28,7 +28,7 @@ methods:
 <!-- ``` -->
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/nowosad/sabre) with:
 
 ``` r
 # install.packages("devtools")
