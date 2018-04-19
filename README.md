@@ -15,12 +15,11 @@ package offers support for `sf` spatial objects, and the following
 methods:
 
   - the V-measure method (Nowosad and Stepinski, 2018)
-  - the MapCurve method (Hargrove et al.,
-2006)
+  - the MapCurve method (Hargrove et al., 2006)
 
 ## Installation
 
-<!-- You can install the released version of `sabre` from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of `sabre` from [CRAN](https://cran.r-project.org/web/packages/sabre/index.html) with: -->
 
 <!-- ``` r -->
 
