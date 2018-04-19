@@ -32,3 +32,5 @@ Imports:
     rlang,
     tibble
 VignetteBuilder: knitr
+URL: https://github.com/Nowosad/sabre
+BugReports: https://github.com/Nowosad/sabre/issues
