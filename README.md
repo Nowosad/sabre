@@ -15,7 +15,8 @@ package offers support for `sf` spatial objects, and the following
 methods:
 
   - the V-measure method (Nowosad and Stepinski, 2018)
-  - the MapCurve method (Hargrove et al., 2006)
+  - the MapCurve method (Hargrove et al.,
+2006)
 
 ## Installation
 
@@ -106,7 +107,8 @@ examples.
 ## References
 
   - Nowosad, Jakub, and Tomasz Stepinski. “Spatial association between
-    regionalizations using the information-theoretical V-measure”
+    regionalizations using the information-theoretical V-measure”.
+    <http://doi.org/10.17605/OSF.IO/RCJH7>
   - Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional
     entropy-based external cluster evaluation measure.” Proceedings of
     the 2007 joint conference on empirical methods in natural language

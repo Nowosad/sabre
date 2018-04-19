@@ -22,7 +22,8 @@
 #' * "completeness"
 #'
 #' @references Nowosad, Jakub, and Tomasz Stepinski. "Spatial association between
-#' regionalizations using the information-theoretical V-measure"
+#' regionalizations using the information-theoretical V-measure".
+#' http://doi.org/10.17605/OSF.IO/RCJH7
 #' @references Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 #' A conditional entropy-based external cluster evaluation measure." Proceedings
 #' of the 2007 joint conference on empirical methods in natural language
