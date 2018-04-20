@@ -4,11 +4,21 @@
 \name{sabre-package}
 \alias{sabre}
 \alias{sabre-package}
-\title{sabre: Spatial Association Between REgionalizations}
+\title{sabre: Spatial Association Between Regionalizations}
 \description{
 Calculates a degree of spatial association between regionalizations
-or categorical maps using the information-theoretical V-measure. It also
-offers an R implementation of the MapCurve method.
+or categorical maps using the information-theoretical V-measure
+(Nowosad and Stepinski (2018) <doi:10.17605/OSF.IO/RCJH7>). It also
+offers an R implementation of the MapCurve method
+(Hargrove et al. (2006) <doi:10.1007/s10109-006-0025-x>).
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/Nowosad/sabre}
+  \item Report bugs at \url{https://github.com/Nowosad/sabre/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (0000-0002-1057-3721)

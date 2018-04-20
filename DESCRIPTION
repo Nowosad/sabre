@@ -1,9 +1,11 @@
 Package: sabre
 Version: 0.2.0
-Title: Spatial Association Between REgionalizations 
+Title: Spatial Association Between Regionalizations 
 Description: Calculates a degree of spatial association between regionalizations 
-    or categorical maps using the information-theoretical V-measure. It also
-    offers an R implementation of the MapCurve method.
+    or categorical maps using the information-theoretical V-measure 
+    (Nowosad and Stepinski (2018) <doi:10.17605/OSF.IO/RCJH7>). It also
+    offers an R implementation of the MapCurve method 
+    (Hargrove et al. (2006) <doi:10.1007/s10109-006-0025-x>).
 Authors@R: c(person("Jakub", "Nowosad", 
     email = "nowosad.jakub@gmail.com",
     role = c("aut", "cre"),
