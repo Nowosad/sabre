@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
+  <a href="..//index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -41,7 +41,14 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/Nowosad/sabre">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -56,7 +63,7 @@
       <h1>sabre: Spatial Association Between REgionalizations</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2018-04-19</h4>
+            <h4 class="date">2018-04-20</h4>
           </div>
 
     
@@ -73,10 +80,10 @@
 <h1 class="hasAnchor">
 <a href="#basic-example---sabre" class="anchor"></a>Basic example - SABRE</h1>
 <p>Two simple regionalizations would be used to show the basic concept of <strong>sabre</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(sabre)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">data</span>(<span class="st">"regions1"</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">data</span>(<span class="st">"regions2"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sabre)
+<span class="kw">library</span>(sf)
+<span class="kw">data</span>(<span class="st">"regions1"</span>)
+<span class="kw">data</span>(<span class="st">"regions2"</span>)</code></pre></div>
 <p>The first map, <code>regions1</code>, has four regions (“r1”, “r2”, “r3”, “r4”) of the same size and shape. The second one, <code>regions2</code>, contains three irregular regions where “z1” is the smallest and “z3” being the largest. Our goal is to compare these two regionalizations and calculate a degree of spatial association between them.</p>
 <p><img src="sabre_files/figure-html/unnamed-chunk-2-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-2-2.png" width="45%"></p>
 <p>It can be done with <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code>, which calculates “V-measure”, “Homogeneity”, and “Completeness” and returns two preprocessed input maps. This function requires, at least, four arguments:</p>
@@ -92,17 +99,17 @@
 </ul>
 <p>Importantly, both <code>x</code> and <code>y</code> must contain <code>POLYGON</code>s or <code>MULTIPOLYGON</code>s and have the same coordinate reference system.</p>
 <p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="http://www.rdocumentation.org/packages/sf/topics/geos_binary_ops">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">regions_vm</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; The SABRE results:</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  V-measure: 0.36 </span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  Homogeneity: 0.32 </span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  Completeness: 0.42 </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;  The spatial objects could be retrived with:</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  $map1 - the first map</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  $map2 - the second map</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)
+regions_vm
+<span class="co">#&gt; The SABRE results:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  V-measure: 0.36 </span>
+<span class="co">#&gt;  Homogeneity: 0.32 </span>
+<span class="co">#&gt;  Completeness: 0.42 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  The spatial objects could be retrived with:</span>
+<span class="co">#&gt;  $map1 - the first map</span>
+<span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>The result is a list with three metrics of spatial association - <code>V-measure</code>, <code>Homogeneity</code>, <code>Completeness</code> - and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. All of the above metrics are between 0 and 1, where larger values are desired. <code>V-measure</code> is a measure of an overall spatial correspondence between input maps. <code>Homogeneity</code> shows an average homogeneity of the regions in the second map with respect to the regions in the first map. <code>Completeness</code> is a function of homogeneity of the regions in the first map with respect to the regions in the second map. The spatial outputs, <code>$map1</code> and <code>$map2</code>, have two columns. The first one contains regions’ names and the second one (<code>rih</code>) describes regions’ inhomogeneities. Geometries of these spatial outputs show intersections of the two input regionalizations.</p>
 <p><img src="sabre_files/figure-html/unnamed-chunk-4-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-4-2.png" width="45%"></p>
 <p>For example, “Map1” shows that three regions have the same inhomogeneity of 0.48. This is due a fact that all of these three have two regions from the second map. The upper left region has a larger inhomogeneity of 0.86 as its area “belongs” to three different regions in the second map. More information about this method and its applications can be found in Nowosad and Stepinski (2018).</p>
@@ -111,16 +118,16 @@
 <h1 class="hasAnchor">
 <a href="#basic-example---mapcurves" class="anchor"></a>Basic example - MapCurves</h1>
 <p>The <strong>sabre</strong> also allows for calculating a degree of spatial association between regionalizations using the MapCurve method (Hargrove et al., 2006). The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> function also requires four arguments, <code>x</code>, <code>x_name</code>, <code>y</code>, and <code>y_name</code>. It also accepts an additional argument - <code>precision</code>. All of these arguments are explained in the previous section.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">regions_mc =<span class="st"> </span><span class="kw"><a href="../reference/mapcurves_calc.html">mapcurves_calc</a></span>(regions1, z, regions2, z)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">regions_mc</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; The MapCurves results:</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  The goodness of fit: 0.61 </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  Reference map: x </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  The spatial objects could be retrived with:</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  $map1 - the first map</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  $map2 - the second map</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_mc =<span class="st"> </span><span class="kw"><a href="../reference/mapcurves_calc.html">mapcurves_calc</a></span>(regions1, z, regions2, z)
+regions_mc
+<span class="co">#&gt; The MapCurves results:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  The goodness of fit: 0.61 </span>
+<span class="co">#&gt;  Reference map: x </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  The spatial objects could be retrived with:</span>
+<span class="co">#&gt;  $map1 - the first map</span>
+<span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> returns a list with a value of the goodness of fit (GOF), the map used as a reference, and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. Read Hargrove et al. (2006) to learn more about this method.</p>
 </div>
 <div id="references" class="section level1">

@@ -86,7 +86,9 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 plot(regions_vm$map1["rih"], main = "Map1: rih"); plot(regions_vm$map2["rih"], main = "Map2: rih")
 ```
 
-See [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html) for more examples.
+More examples can be found in [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html). 
+
+Additionally, examples presented in the [Spatial association between regionalizations using the information-theoretical V-measure](http://doi.org/10.17605/OSF.IO/RCJH7) article could be reproduced using data available at http://sil.uc.edu/cms/index.php?id=data-1#vmeasure.
 
 ## References
 

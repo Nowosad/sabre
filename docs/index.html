@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spatial Association Between REgionalizations  • sabre</title>
+<title>Spatial Association Between Regionalizations  • sabre</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -29,7 +29,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
+  <a href="/index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -41,7 +41,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/Nowosad/sabre">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -70,22 +77,22 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<!-- You can install the released version of `sabre` from [CRAN](https://CRAN.R-project.org) with: -->
+<!-- You can install the released version of `sabre` from [CRAN](https://cran.r-project.org/web/packages/sabre/index.html) with: -->
 <!-- ``` r -->
 <!-- install.packages("sabre") -->
 <!-- ``` -->
 <p>You can install the development version from <a href="https://github.com/nowosad/sabre">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"Nowosad/sabre"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"Nowosad/sabre"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>We use two simple regionalization, <code>regions1</code> and <code>regions2</code> to show the basic concept of calculating a degree of spatial association.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(sabre)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(sf)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">data</span>(<span class="st">"regions1"</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">data</span>(<span class="st">"regions2"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sabre)
+<span class="kw">library</span>(sf)
+<span class="kw">data</span>(<span class="st">"regions1"</span>)
+<span class="kw">data</span>(<span class="st">"regions2"</span>)</code></pre></div>
 <p>The first map, <code>regions1</code> consists of four regions of the same shape and size, while the second one, <code>regions2</code> has three irregular regions.</p>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-2-2.png" width="50%"></p>
 <p>The <code><a href="reference/vmeasure_calc.html">vmeasure_calc()</a></code> function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:</p>
@@ -99,23 +106,24 @@
 <li>
 <code>y_name</code> - a name of the column with regions names of the second regionalization</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">regions_vm =<span class="st"> </span><span class="kw"><a href="reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm =<span class="st"> </span><span class="kw"><a href="reference/vmeasure_calc.html">vmeasure_calc</a></span>(regions1, z, regions2, z)</code></pre></div>
 <p>The result is a list with three metrics of spatial association - <code>V-measure</code>, <code>Homogeneity</code>, <code>Completeness</code> - and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">regions_vm</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; The SABRE results:</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;  V-measure: 0.36 </span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  Homogeneity: 0.32 </span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  Completeness: 0.42 </span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;  The spatial objects could be retrived with:</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;  $map1 - the first map</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;  $map2 - the second map</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions_vm
+<span class="co">#&gt; The SABRE results:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  V-measure: 0.36 </span>
+<span class="co">#&gt;  Homogeneity: 0.32 </span>
+<span class="co">#&gt;  Completeness: 0.42 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  The spatial objects could be retrived with:</span>
+<span class="co">#&gt;  $map1 - the first map</span>
+<span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>Both spatial outputs have two columns. The first one contains regions’ names/values and the second one (<code>rih</code>) describes regions’ inhomogeneities.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map1[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map1: rih"</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map2[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map2: rih"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map1[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map1: rih"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(regions_vm<span class="op">$</span>map2[<span class="st">"rih"</span>], <span class="dt">main =</span> <span class="st">"Map2: rih"</span>)</code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-6-2.png" width="50%"></p>
-<p>See <a href="https://nowosad.github.io/sabre/articles/sabre.html">the package vignette</a> for more examples.</p>
+<p>More examples can be found in <a href="https://nowosad.github.io/sabre/articles/sabre.html">the package vignette</a>.</p>
+<p>Additionally, examples presented in the <a href="http://doi.org/10.17605/OSF.IO/RCJH7">Spatial association between regionalizations using the information-theoretical V-measure</a> article could be reproduced using data available at <a href="http://sil.uc.edu/cms/index.php?id=data-1#vmeasure" class="uri">http://sil.uc.edu/cms/index.php?id=data-1#vmeasure</a>.</p>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -133,7 +141,14 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>License</h2>
+<a href="#sidebar" class="anchor"></a>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/Nowosad/sabre">https://​github.com/​Nowosad/​sabre</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/Nowosad/sabre/issues">https://​github.com/​Nowosad/​sabre/​issues</a>
+</li>
+</ul>
+<h2>License</h2>
 <p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
