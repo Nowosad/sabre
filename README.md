@@ -3,7 +3,7 @@
 sabre
 =====
 
-[![Travis build status](https://travis-ci.org/Nowosad/sabre.svg?branch=master)](https://travis-ci.org/Nowosad/sabre) [![Coverage status](https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://codecov.io/github/Nowosad/sabre?branch=master)
+[![CRAN status](http://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre) [![Build Status](https://travis-ci.org/Nowosad/sabre.png?branch=master)](https://travis-ci.org/Nowosad/sabre) [![codecov](https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/sabre) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/package=sabre)
 
 The **sabre** (**S**patial **A**ssociation **B**etween **RE**gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps. This package offers support for `sf` spatial objects, and the following methods:
 
