@@ -28,11 +28,11 @@ This package offers support for `sf` spatial objects, and the following methods:
 
 ## Installation
 
-<!-- You can install the released version of `sabre` from [CRAN](https://cran.r-project.org/web/packages/sabre/index.html) with: -->
+You can install the released version of `sabre` from [CRAN](https://cran.r-project.org/web/packages/sabre/index.html) with:
 
-<!-- ``` r -->
-<!-- install.packages("sabre") -->
-<!-- ``` -->
+``` r
+install.packages("sabre")
+```
 
 You can install the development version from [GitHub](https://github.com/nowosad/sabre) with:
 
