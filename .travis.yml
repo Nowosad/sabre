@@ -14,6 +14,7 @@ before_install:
 
 r_packages:
   - sf
+  - devtools
 
 after_success:
 - Rscript -e 'covr::codecov()'
