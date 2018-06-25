@@ -1,7 +1,7 @@
 context("test-eco-us.R")
 data("eco_us")
 vm  = vmeasure_calc(eco_us, PROVINCE, eco_us, SECTION)
-vm2 = vmeasure_calc(eco_us, DOMAIN, eco_us, DIVISION, precision = 1)
+vm2 = vmeasure_calc(eco_us, DOMAIN, eco_us, DIVISION)
 # vm2 = vmeasure_calc(eco_us, DOMAIN, eco_us, PROVINCE)
 # vm3 = vmeasure_calc(eco_us, DOMAIN, eco_us, SECTION)
 # vm4 = vmeasure_calc(eco_us, DIVISION, eco_us, PROVINCE)
