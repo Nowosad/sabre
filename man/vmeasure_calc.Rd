@@ -51,9 +51,10 @@ plot(vm$map2["rih"])
 
 }
 \references{
-Nowosad, Jakub, and Tomasz Stepinski. "Spatial association between
-regionalizations using the information-theoretical V-measure".
-http://doi.org/10.17605/OSF.IO/RCJH7
+Nowosad, Jakub, and Tomasz F. Stepinski.
+"Spatial association between regionalizations using the information-theoretical V-measure."
+International Journal of Geographical Information Science (2018).
+https://doi.org/10.1080/13658816.2018.1511794
 
 Rosenberg, Andrew, and Julia Hirschberg. "V-measure:
 A conditional entropy-based external cluster evaluation measure." Proceedings
