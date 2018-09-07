@@ -1,0 +1,16 @@
+citHeader("To cite sabre in publications, please use:")
+
+citEntry(entry = "article",
+  author = c(person("Jakub", "Nowosad"),
+             person("Tomasz", "Stepinski")),
+  title = "Spatial association between regionalizations using the information-theoretical V-measure",
+  journal = "International Journal of Geographical Information Science",
+  volume = "0",
+  number = "0",
+  pages = "1-16",
+  year  = "2018",
+  publisher = "Taylor & Francis",
+  doi = "10.1080/13658816.2018.1511794",
+  url = "https://doi.org/10.1080/13658816.2018.1511794",
+  textVersion = "Nowosad, Jakub, and T. F. Stepinski. (2018) Spatial association between regionalizations using the information-theoretical V-measure. International Journal of Geographical Information Science; DOI: 10.1080/13658816.2018.1511794"
+)
