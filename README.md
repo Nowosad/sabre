@@ -102,11 +102,13 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
 
 More examples can be found in [the package
-vignette](https://nowosad.github.io/sabre/articles/sabre.html).
+vignette](https://nowosad.github.io/sabre/articles/sabre.html) and in
+[the sabre: or how to compare two maps? blog
+post](https://nowosad.github.io/post/sabre-bp/).
 
 Additionally, examples presented in the [Spatial association between
 regionalizations using the information-theoretical
-V-measure](http://doi.org/10.17605/OSF.IO/RCJH7) article could be
+V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be
 reproduced using data available at
 <http://sil.uc.edu/cms/index.php?id=data-1#vmeasure>.
 
