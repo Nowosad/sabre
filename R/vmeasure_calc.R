@@ -122,7 +122,7 @@ format.vmeasure_vector = function(x, ...){
         "V-measure:", round(x$v_measure, 2), "\n",
         "Homogeneity:", round(x$homogeneity, 2), "\n",
         "Completeness:", round(x$completeness, 2), "\n\n",
-        "The spatial objects could be retrived with:\n",
+        "The spatial objects could be retrieved with:\n",
         "$map1", "- the first map\n",
         "$map2", "- the second map")
 }
