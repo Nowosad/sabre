@@ -46,8 +46,22 @@
 #' plot(vm$map1["rih"])
 #' plot(vm$map2["rih"])
 #'
+#' @aliases vmeasure_calc
+#' @rdname vmeasure_calc
+#'
 #' @export
-vmeasure_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
+vmeasure_calc <- function(x,
+                          x_name,
+                          y,
+                          y_name,
+                          B = 1,
+                          precision = NULL){
+  UseMethod("vmeasure_calc")
+}
+
+#' @name vmeasure_calc
+#' @export
+vmeasure_calc.sf = function(x, x_name, y, y_name, B = 1, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -110,6 +124,45 @@ vmeasure_calc = function(x, x_name, y, y_name, B = 1, precision = NULL){
   v_result = vmeasure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
   # sabre_result = list(x, y, v_result)
   sabre_result = list(map1 = x, map2 = y, v_measure = v_result$v_measure,
+                      homogeneity = v_result$homogeneity,
+                      completeness = v_result$completeness)
+  class(sabre_result) = c("vmeasure_vector")
+  return(sabre_result)
+}
+
+#' @name vmeasure_calc
+#' @export
+vmeasure_calc.RasterLayer = function(x, y, B = 1, precision = NULL){
+
+  stopifnot(inherits(x, "RasterLayer"))
+  stopifnot(inherits(y, "RasterLayer"))
+  z = stack(x, y)
+
+  z_df = crosstab(z)
+  z_df = na.omit(z_df)
+  z_df = spread(z_df, Var1, Freq)
+  rownames(z_df) = z_df$Var2
+  z_df = z_df[-1]
+
+  SjZ = apply(z_df, 2, entropy.empirical, unit = "log2")
+  SjR = apply(z_df, 1, entropy.empirical, unit = "log2")
+
+  SZ = entropy.empirical(rowSums(z_df), unit = "log2")
+  SR = entropy.empirical(colSums(z_df), unit = "log2")
+
+  x_df = data.frame(map1 = colnames(z_df), rih = SjZ/SZ,
+                    row.names = NULL, stringsAsFactors = FALSE) # map1
+  y_df = data.frame(map2 = rownames(z_df), rih = SjR/SR,
+                    row.names = NULL, stringsAsFactors = FALSE) # map2
+
+  x2 = stack(x, reclassify(x, x_df))
+  y2 = stack(y, reclassify(y, y_df))
+  names(x2) = c("map1", "rih")
+  names(y2) = c("map2", "rih")
+
+  v_result = vmeasure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
+  # sabre_result = list(x, y, v_result)
+  sabre_result = list(map1 = x2, map2 = y2, v_measure = v_result$v_measure,
                       homogeneity = v_result$homogeneity,
                       completeness = v_result$completeness)
   class(sabre_result) = c("vmeasure_vector")

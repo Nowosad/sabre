@@ -2,9 +2,16 @@
 % Please edit documentation in R/vmeasure_calc.R
 \name{vmeasure_calc}
 \alias{vmeasure_calc}
+\alias{vmeasure_calc.sf}
+\alias{vmeasure_calc.RasterLayer}
 \title{V-measure calculation}
 \usage{
 vmeasure_calc(x, x_name, y, y_name, B = 1, precision = NULL)
+
+\method{vmeasure_calc}{sf}(x, x_name, y, y_name, B = 1,
+  precision = NULL)
+
+\method{vmeasure_calc}{RasterLayer}(x, y, B = 1, precision = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
