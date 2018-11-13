@@ -2,16 +2,23 @@
 % Please edit documentation in R/mapcurves_calc.R
 \name{mapcurves_calc}
 \alias{mapcurves_calc}
+\alias{mapcurves_calc.sf}
+\alias{mapcurves_calc.RasterLayer}
 \title{Mapcurves calculation}
 \usage{
-mapcurves_calc(x, x_name, y, y_name, precision = NULL)
+mapcurves_calc(x, y, x_name, y_name, precision = NULL)
+
+\method{mapcurves_calc}{sf}(x, y, x_name, y_name, precision = NULL)
+
+\method{mapcurves_calc}{RasterLayer}(x, y, x_name = NULL,
+  y_name = NULL, precision = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
-\item{x_name}{A name of the column with regions/clusters names.}
-
 \item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+
+\item{x_name}{A name of the column with regions/clusters names.}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
@@ -34,7 +41,7 @@ library(sf)
 data("regions1")
 data("regions2")
 
-mc = mapcurves_calc(regions1, z, regions2, z)
+mc = mapcurves_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 mc
 
 plot(mc$map1)
