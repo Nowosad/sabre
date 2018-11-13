@@ -49,8 +49,8 @@ It can be done with `vmeasure_calc()`, which calculates "V-measure", "Homogeneit
 This function requires, at least, four arguments:
 
 * `x` - an `sf` object containing the first regionalization
-* `x_name` - a name of the column with regions names of the first regionalization
 * `y` - an `sf` object containing the second regionalization
+* `x_name` - a name of the column with regions names of the first regionalization
 * `y_name` -  a name of the column with regions names of the second regionalization
 
 Importantly, both `x` and `y` must contain `POLYGON`s or `MULTIPOLYGON`s and have the same coordinate reference system.
@@ -63,7 +63,7 @@ The `precision` argument can be used when `vmeasure_calc` produces an error.
 For example, `precision = 1000` rounds values to the third decimal places and `precision = 0.001` uses values rounded to the nearest 1000.
 
 ```{r}
-regions_vm = vmeasure_calc(regions1, z, regions2, z)
+regions_vm = vmeasure_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 regions_vm
 ```
 
@@ -93,7 +93,7 @@ It also accepts an additional argument - `precision`.
 All of these arguments are explained in the previous section.
 
 ```{r}
-regions_mc = mapcurves_calc(regions1, z, regions2, z)
+regions_mc = mapcurves_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 regions_mc
 ```
 
