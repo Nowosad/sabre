@@ -35,12 +35,14 @@
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select left_join mutate_if
 #' @importFrom tibble data_frame
+#' @importFrom raster stack crosstab reclassify
+#' @importFrom tidyr spread
 #'
 #' @examples
 #' library(sf)
 #' data("regions1")
 #' data("regions2")
-#' vm = vmeasure_calc(regions1, z, regions2, z)
+#' vm = vmeasure_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 #' vm
 #'
 #' plot(vm$map1["rih"])
@@ -51,8 +53,8 @@
 #'
 #' @export
 vmeasure_calc <- function(x,
-                          x_name,
                           y,
+                          x_name,
                           y_name,
                           B = 1,
                           precision = NULL){
@@ -61,7 +63,7 @@ vmeasure_calc <- function(x,
 
 #' @name vmeasure_calc
 #' @export
-vmeasure_calc.sf = function(x, x_name, y, y_name, B = 1, precision = NULL){
+vmeasure_calc.sf = function(x, y, x_name, y_name, B = 1, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -132,7 +134,7 @@ vmeasure_calc.sf = function(x, x_name, y, y_name, B = 1, precision = NULL){
 
 #' @name vmeasure_calc
 #' @export
-vmeasure_calc.RasterLayer = function(x, y, B = 1, precision = NULL){
+vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL){
 
   stopifnot(inherits(x, "RasterLayer"))
   stopifnot(inherits(y, "RasterLayer"))
@@ -140,7 +142,7 @@ vmeasure_calc.RasterLayer = function(x, y, B = 1, precision = NULL){
 
   z_df = crosstab(z)
   z_df = na.omit(z_df)
-  z_df = spread(z_df, Var1, Freq)
+  z_df = spread(z_df, "Var1", "Freq")
   rownames(z_df) = z_df$Var2
   z_df = z_df[-1]
 
@@ -175,7 +177,7 @@ format.vmeasure_vector = function(x, ...){
         "V-measure:", round(x$v_measure, 2), "\n",
         "Homogeneity:", round(x$homogeneity, 2), "\n",
         "Completeness:", round(x$completeness, 2), "\n\n",
-        "The spatial objects could be retrieved with:\n",
+        "The spatial objects can be retrieved with:\n",
         "$map1", "- the first map\n",
         "$map2", "- the second map")
 }
