@@ -2,16 +2,24 @@
 % Please edit documentation in R/vmeasure_calc.R
 \name{vmeasure_calc}
 \alias{vmeasure_calc}
+\alias{vmeasure_calc.sf}
+\alias{vmeasure_calc.RasterLayer}
 \title{V-measure calculation}
 \usage{
-vmeasure_calc(x, x_name, y, y_name, B = 1, precision = NULL)
+vmeasure_calc(x, y, x_name, y_name, B = 1, precision = NULL)
+
+\method{vmeasure_calc}{sf}(x, y, x_name, y_name, B = 1,
+  precision = NULL)
+
+\method{vmeasure_calc}{RasterLayer}(x, y, x_name = NULL, y_name = NULL,
+  B = 1, precision = NULL)
 }
 \arguments{
 \item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
 
-\item{x_name}{A name of the column with regions/clusters names.}
-
 \item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+
+\item{x_name}{A name of the column with regions/clusters names.}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
@@ -43,7 +51,7 @@ an information-theoretical measure called the V-measure
 library(sf)
 data("regions1")
 data("regions2")
-vm = vmeasure_calc(regions1, z, regions2, z)
+vm = vmeasure_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 vm
 
 plot(vm$map1["rih"])
