@@ -1,5 +1,5 @@
 Package: sabre
-Version: 0.2.1
+Version: 0.3.0
 Title: Spatial Association Between Regionalizations 
 Description: Calculates a degree of spatial association between regionalizations 
     or categorical maps using the information-theoretical V-measure 
@@ -27,12 +27,13 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
 Depends: R (>= 3.3.0)
 Imports: 
-    sf,
-    entropy,
-    tidyr,
     dplyr,
+    entropy,
+    raster,
     rlang,
-    tibble
+    sf,
+    tibble,
+    tidyr
 VignetteBuilder: knitr
 URL: https://github.com/Nowosad/sabre
 BugReports: https://github.com/Nowosad/sabre/issues
