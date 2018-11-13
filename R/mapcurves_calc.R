@@ -22,20 +22,35 @@
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select mutate_if
 #' @importFrom tibble data_frame
+#' @importFrom raster stack crosstab
+#' @importFrom tidyr spread
 #'
 #' @examples
 #' library(sf)
 #' data("regions1")
 #' data("regions2")
 #'
-#' mc = mapcurves_calc(regions1, z, regions2, z)
+#' mc = mapcurves_calc(x = regions1, y = regions2, x_name = z, y_name = z)
 #' mc
 #'
 #' plot(mc$map1)
 #' plot(mc$map2)
 #'
+#' @aliases mapcurves_calc
+#' @rdname mapcurves_calc
+#'
 #' @export
-mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
+mapcurves_calc <- function(x,
+                          y,
+                          x_name,
+                          y_name,
+                          precision = NULL){
+  UseMethod("mapcurves_calc")
+}
+
+#' @name mapcurves_calc
+#' @export
+mapcurves_calc.sf = function(x, y, x_name, y_name, precision = NULL){
 
   stopifnot(inherits(st_geometry(x), "sfc_POLYGON") || inherits(st_geometry(x), "sfc_MULTIPOLYGON"))
   stopifnot(inherits(st_geometry(y), "sfc_POLYGON") || inherits(st_geometry(y), "sfc_MULTIPOLYGON"))
@@ -78,12 +93,35 @@ mapcurves_calc = function(x, x_name, y, y_name, precision = NULL){
   return(result)
 }
 
+#' @name mapcurves_calc
+#' @export
+mapcurves_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, precision = NULL){
+
+  stopifnot(inherits(x, "RasterLayer"))
+  stopifnot(inherits(y, "RasterLayer"))
+  z = stack(x, y)
+
+  z_df = crosstab(z)
+  z_df = na.omit(z_df)
+  z_df = spread(z_df, "Var1", "Freq")
+  rownames(z_df) = z_df$Var2
+  z_df = z_df[-1]
+
+  z = z_df^2 / tcrossprod(rowSums(z_df), colSums(z_df))
+
+  mapcurves_result = mapcurves(z = z)
+  result = list(map1 = x, map2 = y,
+                ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
+  class(result) = c("mapcurves_vector")
+  return(result)
+}
+
 #' @export
 format.mapcurves_vector = function(x, ...){
   paste("The MapCurves results:\n\n",
         "The goodness of fit:", round(x$gof, 2), "\n",
         "Reference map:", x$ref_map, "\n\n",
-        "The spatial objects could be retrived with:\n",
+        "The spatial objects can be retrieved with:\n",
         "$map1", "- the first map\n",
         "$map2", "- the second map")
 }
