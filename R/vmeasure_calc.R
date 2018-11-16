@@ -140,10 +140,10 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   stopifnot(inherits(y, "RasterLayer"))
   z = stack(x, y)
 
-  z_df = crosstab(z)
+  z_df = crosstab(z, long = TRUE)
   z_df = na.omit(z_df)
-  z_df = spread(z_df, "Var1", "Freq")
-  rownames(z_df) = z_df$Var2
+  z_df = spread(z_df, "layer.1", "Freq", fill = 0)
+  rownames(z_df) = z_df$layer.2
   z_df = z_df[-1]
 
   SjZ = apply(z_df, 2, entropy.empirical, unit = "log2")

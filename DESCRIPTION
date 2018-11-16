@@ -29,7 +29,7 @@ Depends: R (>= 3.3.0)
 Imports: 
     dplyr,
     entropy,
-    raster,
+    raster (>= 2.8-11),
     rlang,
     sf,
     tibble,
