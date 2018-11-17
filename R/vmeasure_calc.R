@@ -141,9 +141,7 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   x = mask(crop(x, y), y)
   y = mask(crop(y, x), x)
 
-  z = stack(x, y)
-
-  z_df = crosstab(z, long = TRUE, useNA = FALSE)
+  z_df = crosstab(x, y, long = TRUE, useNA = FALSE)
   # z_df = na.omit(z_df)
   z_df = spread(z_df, "layer.1", "Freq", fill = 0)
   rownames(z_df) = z_df$layer.2
@@ -158,9 +156,9 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   unique_x = data.frame(map1 = unique(x))
   unique_y = data.frame(map2 = unique(y))
 
-  x_df = data.frame(map1 = as.numeric(colnames(z_df)), rih = SjZ/SZ,
+  x_df = data.frame(map1 = as.integer(colnames(z_df)), rih = SjZ/SZ,
                     row.names = NULL, stringsAsFactors = FALSE) # map1
-  y_df = data.frame(map2 = as.numeric(rownames(z_df)), rih = SjR/SR,
+  y_df = data.frame(map2 = as.integer(rownames(z_df)), rih = SjR/SR,
                     row.names = NULL, stringsAsFactors = FALSE) # map2
 
   x_df = left_join(unique_x, x_df, by = "map1")
