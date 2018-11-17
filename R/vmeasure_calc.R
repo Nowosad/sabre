@@ -141,7 +141,9 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   x = mask(crop(x, y), y)
   y = mask(crop(y, x), x)
 
-  z_df = crosstab(x, y, long = TRUE, useNA = FALSE)
+  z = stack(x, y)
+
+  z_df = crosstab(z, long = TRUE, useNA = FALSE)
   # z_df = na.omit(z_df)
   z_df = spread(z_df, "layer.1", "Freq", fill = 0)
   rownames(z_df) = z_df$layer.2
