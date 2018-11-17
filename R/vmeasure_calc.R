@@ -35,7 +35,7 @@
 #' @importFrom rlang enquo :=
 #' @importFrom dplyr select left_join mutate_if
 #' @importFrom tibble data_frame
-#' @importFrom raster stack crosstab reclassify
+#' @importFrom raster stack crosstab reclassify unique crop mask
 #' @importFrom tidyr spread
 #'
 #' @examples
@@ -138,10 +138,13 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
 
   stopifnot(inherits(x, "RasterLayer"))
   stopifnot(inherits(y, "RasterLayer"))
+  x = mask(crop(x, y), y)
+  y = mask(crop(y, x), x)
+
   z = stack(x, y)
 
-  z_df = crosstab(z, long = TRUE)
-  z_df = na.omit(z_df)
+  z_df = crosstab(z, long = TRUE, useNA = FALSE)
+  # z_df = na.omit(z_df)
   z_df = spread(z_df, "layer.1", "Freq", fill = 0)
   rownames(z_df) = z_df$layer.2
   z_df = z_df[-1]
@@ -152,10 +155,16 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   SZ = entropy.empirical(rowSums(z_df), unit = "log2")
   SR = entropy.empirical(colSums(z_df), unit = "log2")
 
-  x_df = data.frame(map1 = colnames(z_df), rih = SjZ/SZ,
+  unique_x = data.frame(map1 = unique(x))
+  unique_y = data.frame(map2 = unique(y))
+
+  x_df = data.frame(map1 = as.numeric(colnames(z_df)), rih = SjZ/SZ,
                     row.names = NULL, stringsAsFactors = FALSE) # map1
-  y_df = data.frame(map2 = rownames(z_df), rih = SjR/SR,
+  y_df = data.frame(map2 = as.numeric(rownames(z_df)), rih = SjR/SR,
                     row.names = NULL, stringsAsFactors = FALSE) # map2
+
+  x_df = left_join(unique_x, x_df, by = "map1")
+  y_df = left_join(unique_y, y_df, by = "map2")
 
   x2 = stack(x, reclassify(x, x_df))
   y2 = stack(y, reclassify(y, y_df))
