@@ -27,7 +27,7 @@ vmeasure_calc(x, y, x_name, y_name, B = 1, precision = NULL)
 homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
 completeness. By default this value is 1.}
 
-\item{precision}{numeric; see \link{st_as_binary} for how to do this.}
+\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link{st_as_binary} for how to do this.}
 }
 \value{
 A list with five elements:

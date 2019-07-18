@@ -101,11 +101,11 @@ mapcurves_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, precis
   stopifnot(inherits(y, "RasterLayer"))
   z = stack(x, y)
 
-  z_df = crosstab(z)
-  z_df = na.omit(z_df)
-  z_df = spread(z_df, "Var1", "Freq")
-  rownames(z_df) = z_df$Var2
-  z_df = z_df[-1]
+  z_df = t(crosstab(z))
+  # z_df = na.omit(z_df)
+  # z_df = spread(z_df, "Var1", "Freq")
+  # rownames(z_df) = z_df$Var2
+  # z_df = z_df[-1]
 
   z = z_df^2 / tcrossprod(rowSums(z_df), colSums(z_df))
 

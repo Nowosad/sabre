@@ -22,7 +22,7 @@ mapcurves_calc(x, y, x_name, y_name, precision = NULL)
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
-\item{precision}{numeric; see \link{st_as_binary} for how to do this.}
+\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link{st_as_binary} for how to do this.}
 }
 \value{
 A list with four elements:
