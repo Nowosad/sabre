@@ -23,7 +23,7 @@ the following methods:
 ## Installation
 
 You can install the released version of `sabre` from
-[CRAN](https://cran.r-project.org/web/packages/sabre/index.html) with:
+[CRAN](https://cran.r-project.org/package=sabre) with:
 
 ``` r
 install.packages("sabre")
