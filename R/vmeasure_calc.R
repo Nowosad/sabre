@@ -123,7 +123,9 @@ vmeasure_calc.sf = function(x, y, x_name, y_name, B = 1, precision = NULL){
   # B = 1
   # vmeasure = ((1 + B) * homogeneity * completeness) / (B * homogeneity + completeness)
 
-  v_result = vmeasure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
+  v_result = vmeasure(x = as.table(colSums(z_df)),
+                      y = as.table(rowSums(z_df)),
+                      z = z_df, B = B)
   # sabre_result = list(x, y, v_result)
   sabre_result = list(map1 = x, map2 = y, v_measure = v_result$v_measure,
                       homogeneity = v_result$homogeneity,
@@ -164,7 +166,9 @@ vmeasure_calc.RasterLayer = function(x, y, x_name = NULL, y_name = NULL, B = 1, 
   names(x2) = c("map1", "rih")
   names(y2) = c("map2", "rih")
 
-  v_result = vmeasure(x = colSums(z_df), y = rowSums(z_df), z = z_df, B = B)
+  v_result = vmeasure(x = as.table(colSums(z_df)),
+                      y = as.table(rowSums(z_df)),
+                      z = z_df, B = B)
   # sabre_result = list(x, y, v_result)
   sabre_result = list(map1 = x2, map2 = y2, v_measure = v_result$v_measure,
                       homogeneity = v_result$homogeneity,

@@ -30,8 +30,13 @@
 #'
 #' @export
 vmeasure = function(x, y, z = NULL, B = 1){
-  entropy_x = entropy.empirical(x / length(x), unit = "log2")
-  entropy_y = entropy.empirical(y / length(y), unit = "log2")
+  if (!is.table(x) && !is.table(y)){
+    entropy_x = entropy.empirical(table(x), unit = "log2")
+    entropy_y = entropy.empirical(table(y), unit = "log2")
+  } else {
+    entropy_x = entropy.empirical(x, unit = "log2")
+    entropy_y = entropy.empirical(y, unit = "log2")
+  }
   if (is.null(z)){
     mi_xy = mi.empirical(table(x, y), unit = "log2")
   } else {

@@ -11,7 +11,7 @@ mapcurves(x, y, z = NULL)
 
 \item{y}{A numeric vector, representing a categorical values.}
 
-\item{z}{A numeric matrix. The goodness of fit (GOF) value fir each pair of
+\item{z}{A numeric matrix. The goodness of fit (GOF) value for each pair of
 classes in \code{x} and \code{y}. By default this argument is set to \code{NULL},
 and the value of \code{z} is calculated based on \code{x} and \code{y}.}
 }

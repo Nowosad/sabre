@@ -4,7 +4,7 @@
 #'
 #' @param x A numeric vector, representing a categorical values.
 #' @param y A numeric vector, representing a categorical values.
-#' @param z A numeric matrix. The goodness of fit (GOF) value fir each pair of
+#' @param z A numeric matrix. The goodness of fit (GOF) value for each pair of
 #' classes in `x` and `y`. By default this argument is set to `NULL`,
 #' and the value of `z` is calculated based on `x` and `y`.
 #'

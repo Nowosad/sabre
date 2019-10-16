@@ -1,5 +1,5 @@
 Package: sabre
-Version: 0.3.1
+Version: 0.3.2
 Title: Spatial Association Between Regionalizations 
 Description: Calculates a degree of spatial association between regionalizations 
     or categorical maps using the information-theoretical V-measure 
@@ -35,5 +35,5 @@ Imports:
     tibble,
     tidyr
 VignetteBuilder: knitr
-URL: https://github.com/Nowosad/sabre
+URL: https://nowosad.github.io/sabre/
 BugReports: https://github.com/Nowosad/sabre/issues
