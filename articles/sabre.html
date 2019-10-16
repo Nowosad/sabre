@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>sabre: Spatial Association Between REgionalizations • sabre</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="sabre: Spatial Association Between REgionalizations">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sabre</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -49,14 +50,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/Nowosad/sabre">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -65,15 +59,16 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>sabre: Spatial Association Between REgionalizations</h1>
                         <h4 class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2019-07-18</h4>
+            <h4 class="date">2019-10-16</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/Nowosad/sabre/blob/master/vignettes/sabre.Rmd"><code>vignettes/sabre.Rmd</code></a></small>
+      
       <div class="hidden name"><code>sabre.Rmd</code></div>
 
     </div>
@@ -91,10 +86,10 @@
 <h1 class="hasAnchor">
 <a href="#basic-example---sabre" class="anchor"></a>Basic example - SABRE</h1>
 <p>Two simple regionalizations would be used to show the basic concept of <strong>sabre</strong>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sabre)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"regions1"</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"regions2"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sabre)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sf)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"regions1"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"regions2"</span>)</a></code></pre></div>
 <p>The first map, <code>regions1</code>, has four regions (“r1”, “r2”, “r3”, “r4”) of the same size and shape. The second one, <code>regions2</code>, contains three irregular regions where “z1” is the smallest and “z3” being the largest. Our goal is to compare these two regionalizations and calculate a degree of spatial association between them.</p>
 <p><img src="sabre_files/figure-html/unnamed-chunk-2-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-2-2.png" width="45%"></p>
 <p>It can be done with <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code>, which calculates “V-measure”, “Homogeneity”, and “Completeness” and returns two preprocessed input maps. This function requires, at least, four arguments:</p>
@@ -109,7 +104,7 @@
 <code>y_name</code> - a name of the column with regions names of the second regionalization</li>
 </ul>
 <p>Importantly, both <code>x</code> and <code>y</code> must contain <code>POLYGON</code>s or <code>MULTIPOLYGON</code>s and have the same coordinate reference system.</p>
-<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="https://www.rdocumentation.org/packages/sf/topics/geos_binary_ops">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
+<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="https://rdrr.io/pkg/sf/man/geos_binary_ops.html">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">regions_vm =<span class="st"> </span><span class="kw"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span>(<span class="dt">x =</span> regions1, <span class="dt">y =</span> regions2, <span class="dt">x_name =</span> z, <span class="dt">y_name =</span> z)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">regions_vm</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; The SABRE results:</span></a>
@@ -154,6 +149,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -168,17 +164,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Jakub Nowosad, Tomasz Stepinski.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
