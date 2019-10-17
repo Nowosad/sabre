@@ -15,7 +15,7 @@ Calculates a degree of spatial association between regionalizations
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/Nowosad/sabre}
+  \item \url{https://nowosad.github.io/sabre/}
   \item Report bugs at \url{https://github.com/Nowosad/sabre/issues}
 }
 
