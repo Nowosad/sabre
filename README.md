@@ -112,20 +112,12 @@ reproduced using data available at
 ## Logo
 
 Hex logo was created with [hexmake](https://connect.thinkr.fr/hexmake/)
-using
-
-<div>
-
-icons made by
+using icons made by
 <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
 and
 <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca
 Creative Agency</a> from
-<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-
-</div>
-
-.
+<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>.
 
 ## References
 
