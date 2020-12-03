@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sabre
+# sabre <img src="man/figures/logo.png" align="right" width="150" />
 
 [![CRAN status](http://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre)
 [![Build Status](https://travis-ci.org/Nowosad/sabre.png?branch=master)](https://travis-ci.org/Nowosad/sabre)
@@ -92,9 +92,14 @@ More examples can be found in [the package vignette](https://nowosad.github.io/s
 
 Additionally, examples presented in the [Spatial association between regionalizations using the information-theoretical V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be reproduced using data available at http://sil.uc.edu/cms/index.php?id=data-1#vmeasure.
 
+## Logo
+
+Hex logo was created with [hexmake](https://connect.thinkr.fr/hexmake/) using <div>icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> and <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>.
+
 ## References
 
 - Nowosad, Jakub, and Tomasz F. Stepinski. "Spatial association between regionalizations using the information-theoretical V-measure." International Journal of Geographical Information Science (2018). https://doi.org/10.1080/13658816.2018.1511794
 - Rosenberg, Andrew, and Julia Hirschberg. "V-measure: A conditional entropy-based external cluster evaluation measure." Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.
 - Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. "Mapcurves: a quantitative method for comparing categorical maps." Journal of Geographical Systems 8.2 (2006): 187.
+
 
