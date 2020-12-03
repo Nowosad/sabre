@@ -5,8 +5,7 @@
 
 [![CRAN
 status](http://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre)
-[![Build
-Status](https://travis-ci.org/Nowosad/sabre.png?branch=master)](https://travis-ci.org/Nowosad/sabre)
+[![R-CMD-check](https://github.com/Nowosad/sabre/workflows/R-CMD-check/badge.svg)](https://github.com/Nowosad/sabre/actions)
 [![codecov](https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/sabre)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/package=sabre)

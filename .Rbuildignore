@@ -6,3 +6,4 @@
 ^docs$
 ^LICENSE\.md$
 ^codecov\.yml$
+^\.github$
