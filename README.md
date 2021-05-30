@@ -13,8 +13,8 @@ downloads](http://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/p
 The **sabre** (**S**patial **A**ssociation **B**etween
 **RE**gionalizations) is an R package for calculating a degree of
 spatial association between regionalizations or categorical maps. This
-package offers support for `sf` and `RasterLayer` spatial objects, and
-the following methods:
+package offers support for `sf`, `RasterLayer`, `SpatRaster`, and
+`stars` spatial objects, and the following methods:
 
 -   the V-measure method (Nowosad and Stepinski, 2018)
 -   the MapCurve method (Hargrove et al., 2006)
