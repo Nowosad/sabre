@@ -6,6 +6,8 @@
 \alias{sabre-package}
 \title{sabre: Spatial Association Between Regionalizations}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Calculates a degree of spatial association between regionalizations 
     or categorical maps using the information-theoretical V-measure 
     (Nowosad and Stepinski (2018) <doi:10.1080/13658816.2018.1511794>). It also
@@ -21,7 +23,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (0000-0002-1057-3721)
+\strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (\href{https://orcid.org/0000-0002-1057-3721}{ORCID})
 
 Authors:
 \itemize{

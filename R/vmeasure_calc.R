@@ -3,9 +3,9 @@
 #' It calculates a degree of spatial association between regionalizations using
 #' an information-theoretical measure called the V-measure
 #'
-#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type or a spatial raster object of class `RasterLayer`, `SpatRaster`, or `stars`.
 #' @param x_name A name of the column with regions/clusters names.
-#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type or a spatial raster object of class `RasterLayer`, `SpatRaster`, or `stars`.
 #' @param y_name A name of the column with regions/clusters names.
 #' @inheritParams vmeasure
 #' @inheritParams sf::st_set_precision
@@ -48,11 +48,20 @@
 #' plot(vm$map1["rih"])
 #' plot(vm$map2["rih"])
 #'
+#' library(raster)
+#' data("partitions1")
+#' data("partitions2")
+#' vm2 = vmeasure_calc(x = partitions1, y = partitions2)
+#' vm2
+#'
+#' plot(vm2$map1[["rih"]])
+#' plot(vm2$map2[["rih"]])
+#'
 #' @aliases vmeasure_calc
 #' @rdname vmeasure_calc
 #'
 #' @export
-vmeasure_calc <- function(x,
+vmeasure_calc = function(x,
                           y,
                           x_name,
                           y_name,
@@ -132,6 +141,20 @@ vmeasure_calc.sf = function(x, y, x_name, y_name, B = 1, precision = NULL){
                       completeness = v_result$completeness)
   class(sabre_result) = c("vmeasure_vector")
   return(sabre_result)
+}
+
+#' @name vmeasure_calc
+#' @export
+vmeasure_calc.stars = function(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL){
+  vmeasure_calc(methods::as(x, "Raster"), methods::as(y, "Raster"),
+                x_name = x_name, y_name = y_name, B = B, precision = precision)
+}
+
+#' @name vmeasure_calc
+#' @export
+vmeasure_calc.SpatRaster = function(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL){
+  vmeasure_calc(methods::as(x, "Raster"), methods::as(y, "Raster"),
+                x_name = x_name, y_name = y_name, B = B, precision = precision)
 }
 
 #' @name vmeasure_calc

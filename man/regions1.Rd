@@ -4,7 +4,9 @@
 \name{regions1}
 \alias{regions1}
 \title{Red regionalization}
-\format{An object of class \code{sf} (inherits from \code{data.frame}) with 4 rows and 2 columns.}
+\format{
+An object of class \code{sf} (inherits from \code{data.frame}) with 4 rows and 2 columns.
+}
 \usage{
 regions1
 }

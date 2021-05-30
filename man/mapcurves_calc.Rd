@@ -3,6 +3,8 @@
 \name{mapcurves_calc}
 \alias{mapcurves_calc}
 \alias{mapcurves_calc.sf}
+\alias{mapcurves_calc.stars}
+\alias{mapcurves_calc.SpatRaster}
 \alias{mapcurves_calc.RasterLayer}
 \title{Mapcurves calculation}
 \usage{
@@ -10,19 +12,22 @@ mapcurves_calc(x, y, x_name, y_name, precision = NULL)
 
 \method{mapcurves_calc}{sf}(x, y, x_name, y_name, precision = NULL)
 
-\method{mapcurves_calc}{RasterLayer}(x, y, x_name = NULL,
-  y_name = NULL, precision = NULL)
+\method{mapcurves_calc}{stars}(x, y, x_name = NULL, y_name = NULL, precision = NULL)
+
+\method{mapcurves_calc}{SpatRaster}(x, y, x_name = NULL, y_name = NULL, precision = NULL)
+
+\method{mapcurves_calc}{RasterLayer}(x, y, x_name = NULL, y_name = NULL, precision = NULL)
 }
 \arguments{
-\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type or a spatial raster object of class \code{RasterLayer}, \code{SpatRaster}, or \code{stars}.}
 
-\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type or a spatial raster object of class \code{RasterLayer}, \code{SpatRaster}, or \code{stars}.}
 
 \item{x_name}{A name of the column with regions/clusters names.}
 
 \item{y_name}{A name of the column with regions/clusters names.}
 
-\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link{st_as_binary} for how to do this.}
+\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link[sf]{st_as_binary} for how to do this.}
 }
 \value{
 A list with four elements:
@@ -46,6 +51,15 @@ mc
 
 plot(mc$map1)
 plot(mc$map2)
+
+library(raster)
+data("partitions1")
+data("partitions2")
+mc2 = mapcurves_calc(x = partitions1, y = partitions2)
+mc2
+
+plot(mc2$map1)
+plot(mc2$map2)
 
 }
 \references{

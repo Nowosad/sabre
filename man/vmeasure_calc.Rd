@@ -3,21 +3,25 @@
 \name{vmeasure_calc}
 \alias{vmeasure_calc}
 \alias{vmeasure_calc.sf}
+\alias{vmeasure_calc.stars}
+\alias{vmeasure_calc.SpatRaster}
 \alias{vmeasure_calc.RasterLayer}
 \title{V-measure calculation}
 \usage{
 vmeasure_calc(x, y, x_name, y_name, B = 1, precision = NULL)
 
-\method{vmeasure_calc}{sf}(x, y, x_name, y_name, B = 1,
-  precision = NULL)
+\method{vmeasure_calc}{sf}(x, y, x_name, y_name, B = 1, precision = NULL)
 
-\method{vmeasure_calc}{RasterLayer}(x, y, x_name = NULL, y_name = NULL,
-  B = 1, precision = NULL)
+\method{vmeasure_calc}{stars}(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL)
+
+\method{vmeasure_calc}{SpatRaster}(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL)
+
+\method{vmeasure_calc}{RasterLayer}(x, y, x_name = NULL, y_name = NULL, B = 1, precision = NULL)
 }
 \arguments{
-\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+\item{x}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type or a spatial raster object of class \code{RasterLayer}, \code{SpatRaster}, or \code{stars}.}
 
-\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type.}
+\item{y}{An object of class \code{sf} with a \code{POLYGON} or \code{MULTIPOLYGON} geometry type or a spatial raster object of class \code{RasterLayer}, \code{SpatRaster}, or \code{stars}.}
 
 \item{x_name}{A name of the column with regions/clusters names.}
 
@@ -27,7 +31,7 @@ vmeasure_calc(x, y, x_name, y_name, B = 1, precision = NULL)
 homogeneity, and if \code{B} < 1 then homogeneity is weighted more strongly than
 completeness. By default this value is 1.}
 
-\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link{st_as_binary} for how to do this.}
+\item{precision}{numeric, or object of class \code{units} with distance units (but see details); see \link[sf]{st_as_binary} for how to do this.}
 }
 \value{
 A list with five elements:
@@ -56,6 +60,15 @@ vm
 
 plot(vm$map1["rih"])
 plot(vm$map2["rih"])
+
+library(raster)
+data("partitions1")
+data("partitions2")
+vm2 = vmeasure_calc(x = partitions1, y = partitions2)
+vm2
+
+plot(vm2$map1[["rih"]])
+plot(vm2$map2[["rih"]])
 
 }
 \references{

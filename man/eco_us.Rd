@@ -4,7 +4,9 @@
 \name{eco_us}
 \alias{eco_us}
 \title{Ecoregions of the United States}
-\format{An object of class \code{sf} (inherits from \code{data.frame}) with 330 rows and 5 columns.}
+\format{
+An object of class \code{sf} (inherits from \code{data.frame}) with 330 rows and 5 columns.
+}
 \source{
 https://www.sciencebase.gov/catalog/item/54244abde4b037b608f9e23d
 }

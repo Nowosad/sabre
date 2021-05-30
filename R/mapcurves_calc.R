@@ -2,9 +2,9 @@
 #'
 #' It calculates the Mapcurves's goodness-of-fit (GOF)
 #'
-#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
+#' @param x An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type or a spatial raster object of class `RasterLayer`, `SpatRaster`, or `stars`.
 #' @param x_name A name of the column with regions/clusters names.
-#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type.
+#' @param y An object of class `sf` with a `POLYGON` or `MULTIPOLYGON` geometry type or a spatial raster object of class `RasterLayer`, `SpatRaster`, or `stars`.
 #' @param y_name A name of the column with regions/clusters names.
 #' @inheritParams sf::st_set_precision
 #'
@@ -36,11 +36,20 @@
 #' plot(mc$map1)
 #' plot(mc$map2)
 #'
+#' library(raster)
+#' data("partitions1")
+#' data("partitions2")
+#' mc2 = mapcurves_calc(x = partitions1, y = partitions2)
+#' mc2
+#'
+#' plot(mc2$map1)
+#' plot(mc2$map2)
+#'
 #' @aliases mapcurves_calc
 #' @rdname mapcurves_calc
 #'
 #' @export
-mapcurves_calc <- function(x,
+mapcurves_calc = function(x,
                           y,
                           x_name,
                           y_name,
@@ -91,6 +100,20 @@ mapcurves_calc.sf = function(x, y, x_name, y_name, precision = NULL){
                 ref_map = mapcurves_result$ref_map, gof = mapcurves_result$gof)
   class(result) = c("mapcurves_vector")
   return(result)
+}
+
+#' @name mapcurves_calc
+#' @export
+mapcurves_calc.stars = function(x, y, x_name = NULL, y_name = NULL, precision = NULL){
+  mapcurves_calc(methods::as(x, "Raster"), methods::as(y, "Raster"),
+                x_name = x_name, y_name = y_name, precision = precision)
+}
+
+#' @name mapcurves_calc
+#' @export
+mapcurves_calc.SpatRaster = function(x, y, x_name = NULL, y_name = NULL, precision = NULL){
+  mapcurves_calc(methods::as(x, "Raster"), methods::as(y, "Raster"),
+                 x_name = x_name, y_name = y_name, precision = precision)
 }
 
 #' @name mapcurves_calc

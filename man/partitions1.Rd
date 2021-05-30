@@ -4,7 +4,9 @@
 \name{partitions1}
 \alias{partitions1}
 \title{Red regionalization (raster version)}
-\format{An object of class \code{RasterLayer} of dimension 8 x 10 x 1.}
+\format{
+An object of class \code{RasterLayer} of dimension 8 x 10 x 1.
+}
 \usage{
 partitions1
 }
