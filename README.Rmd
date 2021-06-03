@@ -90,7 +90,7 @@ plot(regions_vm$map1["rih"], main = "Map1: rih"); plot(regions_vm$map2["rih"], m
 
 More examples can be found in [the package vignette](https://nowosad.github.io/sabre/articles/sabre.html) and in [the sabre: or how to compare two maps? blog post](https://nowosad.github.io/post/sabre-bp/).
 
-Additionally, examples presented in the [Spatial association between regionalizations using the information-theoretical V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be reproduced using data available at http://sil.uc.edu/cms/index.php?id=data-1#vmeasure.
+Additionally, examples presented in the [Spatial association between regionalizations using the information-theoretical V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be reproduced using data available at http://sil.uc.edu/index.php?id=data-1#vmeasure.
 
 ## Logo
 

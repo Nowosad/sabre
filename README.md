@@ -106,7 +106,7 @@ Additionally, examples presented in the [Spatial association between
 regionalizations using the information-theoretical
 V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be
 reproduced using data available at
-<http://sil.uc.edu/cms/index.php?id=data-1#vmeasure>.
+<http://sil.uc.edu/index.php?id=data-1#vmeasure>.
 
 ## Logo
 
