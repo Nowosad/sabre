@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   sabre: sabre.html
-last_built: 2021-06-03T12:18Z
+  sabre2: sabre2.html
+last_built: 2021-06-06T10:43Z
 
