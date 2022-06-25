@@ -23,8 +23,9 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install dependencies
         run: |
+          options(install.packages.check.source = "no")
           install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_deps(dependencies = TRUE, build = FALSE)
+          remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
