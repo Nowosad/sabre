@@ -23,7 +23,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install dependencies
         run: |
-          options(install.packages.check.source = "no")
+          options(repos = c(rspatial = 'https://rspatial.r-universe.dev',
+                            CRAN = 'https://cloud.r-project.org'))
           install.packages(c("remotes", "rcmdcheck"))
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
