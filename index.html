@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">sabre</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/sabre.html">Get started</a>
 </li>
@@ -61,7 +57,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -75,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Nowosad/sabre/">
+  <a href="https://github.com/Nowosad/sabre/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -92,9 +88,8 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="sabre-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#sabre-" class="anchor"></a>sabre <img src="reference/figures/logo.png" align="right" width="150">
+<div class="section level1">
+<div class="page-header"><h1 id="sabre-">sabre <img src="reference/figures/logo.png" align="right" width="150"><a class="anchor" aria-label="anchor" href="#sabre-"></a>
 </h1></div>
 
 <p>The <strong>sabre</strong> (<strong>S</strong>patial <strong>A</strong>ssociation <strong>B</strong>etween <strong>RE</strong>gionalizations) is an R package for calculating a degree of spatial association between regionalizations or categorical maps. This package offers support for <code>sf</code>, <code>RasterLayer</code>, <code>SpatRaster</code>, and <code>stars</code> spatial objects, and the following methods:</p>
@@ -102,26 +97,26 @@
 <li>the V-measure method (Nowosad and Stepinski, 2018)</li>
 <li>the MapCurve method (Hargrove et al., 2006)</li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>sabre</code> from <a href="https://cran.r-project.org/package=sabre">CRAN</a> with:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of <code>sabre</code> from <a href="https://cran.r-project.org/package=sabre" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"sabre"</span><span class="op">)</span></code></pre></div>
-<p>You can install the development version from <a href="https://github.com/nowosad/sabre">GitHub</a> with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sabre"</span><span class="op">)</span></code></pre></div>
+<p>You can install the development version from <a href="https://github.com/nowosad/sabre" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Nowosad/sabre"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>We use two simple regionalization, <code>regions1</code> and <code>regions2</code> to show the basic concept of calculating a degree of spatial association.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nowosad.github.io/sabre/">sabre</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"regions1"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"regions2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nowosad.github.io/sabre/" class="external-link">sabre</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"regions1"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"regions2"</span><span class="op">)</span></code></pre></div>
 <p>The first map, <code>regions1</code> consists of four regions of the same shape and size, while the second one, <code>regions2</code> has three irregular regions.</p>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-2-2.png" width="50%"></p>
 <p>The <code><a href="reference/vmeasure_calc.html">vmeasure_calc()</a></code> function allows for calculation of a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure. It requires, at least, four arguments:</p>
@@ -151,22 +146,22 @@
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>Both spatial outputs have two columns. The first one contains regions’ names/values and the second one (<code>rih</code>) describes regions’ inhomogeneities.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">regions_vm</span><span class="op">$</span><span class="va">map1</span><span class="op">[</span><span class="st">"rih"</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Map1: rih"</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">regions_vm</span><span class="op">$</span><span class="va">map2</span><span class="op">[</span><span class="st">"rih"</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Map2: rih"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">regions_vm</span><span class="op">$</span><span class="va">map1</span><span class="op">[</span><span class="st">"rih"</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Map1: rih"</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">regions_vm</span><span class="op">$</span><span class="va">map2</span><span class="op">[</span><span class="st">"rih"</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Map2: rih"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="50%"><img src="reference/figures/README-unnamed-chunk-6-2.png" width="50%"></p>
-<p>More examples can be found in <a href="https://nowosad.github.io/sabre/articles/sabre.html">the package vignette</a> and in <a href="https://nowosad.github.io/post/sabre-bp/">the sabre: or how to compare two maps? blog post</a>.</p>
-<p>Additionally, examples presented in the <a href="https://doi.org/10.1080/13658816.2018.1511794">Spatial association between regionalizations using the information-theoretical V-measure</a> article can be reproduced using data available at <a href="http://sil.uc.edu/index.php?id=data-1#vmeasure" class="uri">http://sil.uc.edu/index.php?id=data-1#vmeasure</a>.</p>
+<p>More examples can be found in <a href="https://nowosad.github.io/sabre/articles/sabre.html" class="external-link">the package vignette</a> and in <a href="https://jakubnowosad.com/posts/2018-09-10-sabre-bp/" class="external-link">the sabre: or how to compare two maps? blog post</a>.</p>
+<p>Additionally, examples presented in the <a href="https://doi.org/10.1080/13658816.2018.1511794" class="external-link">Spatial association between regionalizations using the information-theoretical V-measure</a> article can be reproduced using data available at <a href="http://sil.uc.edu/index.php?id=data-1#vmeasure" class="external-link uri">http://sil.uc.edu/index.php?id=data-1#vmeasure</a>.</p>
 </div>
-<div id="logo" class="section level2">
-<h2 class="hasAnchor">
-<a href="#logo" class="anchor"></a>Logo</h2>
-<p>Hex logo was created with <a href="https://connect.thinkr.fr/hexmake/">hexmake</a> using icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> and <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>.</p>
+<div class="section level2">
+<h2 id="logo">Logo<a class="anchor" aria-label="anchor" href="#logo"></a>
+</h2>
+<p>Hex logo was created with <a href="https://connect.thinkr.fr/hexmake/" class="external-link">hexmake</a> using icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons" class="external-link">Smashicons</a> and <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency" class="external-link">Creaticca Creative Agency</a> from <a href="https://www.flaticon.com/" title="Flaticon" class="external-link">www.flaticon.com</a>.</p>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
-<li>Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association between regionalizations using the information-theoretical V-measure.” International Journal of Geographical Information Science (2018). <a href="https://doi.org/10.1080/13658816.2018.1511794" class="uri">https://doi.org/10.1080/13658816.2018.1511794</a>
+<li>Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association between regionalizations using the information-theoretical V-measure.” International Journal of Geographical Information Science (2018). <a href="https://doi.org/10.1080/13658816.2018.1511794" class="external-link uri">https://doi.org/10.1080/13658816.2018.1511794</a>
 </li>
 <li>Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional entropy-based external cluster evaluation measure.” Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.</li>
 <li>Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. “Mapcurves: a quantitative method for comparing categorical maps.” Journal of Geographical Systems 8.2 (2006): 187.</li>
@@ -177,57 +172,61 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=sabre">https://​cloud.r-project.org/​package=sabre</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/Nowosad/sabre/">https://​github.com/​Nowosad/​sabre/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/Nowosad/sabre/issues">https://​github.com/​Nowosad/​sabre/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="citation">
-<h2>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html">Citing sabre</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Jakub Nowosad <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1057-3721" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Tomasz Stepinski <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://cloud.r-project.org/package=sabre" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/Nowosad/sabre/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/Nowosad/sabre/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=sabre"><img src="http://www.r-pkg.org/badges/version/sabre" alt="CRAN status"></a></li>
-<li><a href="https://github.com/Nowosad/sabre/actions"><img src="https://github.com/Nowosad/sabre/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/Nowosad/sabre"><img src="https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=sabre"><img src="http://cranlogs.r-pkg.org/badges/sabre" alt="CRAN RStudio mirror downloads"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing sabre</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Jakub Nowosad <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1057-3721" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Tomasz Stepinski <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=sabre" class="external-link"><img src="http://www.r-pkg.org/badges/version/sabre" alt="CRAN status"></a></li>
+<li><a href="https://github.com/Nowosad/sabre/actions" class="external-link"><img src="https://github.com/Nowosad/sabre/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/Nowosad/sabre" class="external-link"><img src="https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=sabre" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/sabre" alt="CRAN RStudio mirror downloads"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Jakub Nowosad, Tomasz Stepinski.</p>
+  <p></p>
+<p>Developed by Jakub Nowosad, Tomasz Stepinski.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
@@ -235,6 +234,8 @@
 
   
 
+
+  
 
   </body>
 </html>

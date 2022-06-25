@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">sabre</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/sabre.html">Get started</a>
 </li>
@@ -57,7 +53,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -71,7 +67,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/Nowosad/sabre/">
+  <a href="https://github.com/Nowosad/sabre/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,11 +86,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>sabre: Spatial Association Between REgionalizations</h1>
-                        <h4 class="author">Jakub Nowosad</h4>
+                        <h4 data-toc-skip class="author">Jakub Nowosad</h4>
             
-            <h4 class="date">2021-06-06</h4>
+            <h4 data-toc-skip class="date">2022-06-25</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/Nowosad/sabre/blob/master/vignettes/sabre.Rmd"><code>vignettes/sabre.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Nowosad/sabre/blob/HEAD/vignettes/sabre.Rmd" class="external-link"><code>vignettes/sabre.Rmd</code></a></small>
       <div class="hidden name"><code>sabre.Rmd</code></div>
 
     </div>
@@ -108,15 +104,15 @@
 <li>the V-measure method (Nowosad and Stepinski, 2018)</li>
 <li>the MapCurve method (Hargrove et al., 2006)</li>
 </ul>
-<div id="basic-example---sabre" class="section level1">
-<h1 class="hasAnchor">
-<a href="#basic-example---sabre" class="anchor"></a>Basic example - SABRE</h1>
+<div class="section level2">
+<h2 id="basic-example---sabre">Basic example - SABRE<a class="anchor" aria-label="anchor" href="#basic-example---sabre"></a>
+</h2>
 <p>Two simple regionalizations would be used to show the basic concept of <strong>sabre</strong>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nowosad.github.io/sabre/">sabre</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"regions1"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"regions2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nowosad.github.io/sabre/" class="external-link">sabre</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"regions1"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"regions2"</span><span class="op">)</span></code></pre></div>
 <p>The first map, <code>regions1</code>, has four regions (“r1”, “r2”, “r3”, “r4”) of the same size and shape. The second one, <code>regions2</code>, contains three irregular regions where “z1” is the smallest and “z3” being the largest. Our goal is to compare these two regionalizations and calculate a degree of spatial association between them.</p>
 <p><img src="sabre_files/figure-html/unnamed-chunk-2-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-2-2.png" width="45%"></p>
 <p>It can be done with <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code>, which calculates “V-measure”, “Homogeneity”, and “Completeness” and returns two preprocessed input maps. This function requires, at least, four arguments:</p>
@@ -131,7 +127,7 @@
 <code>y_name</code> - a name of the column with regions names of the second regionalization</li>
 </ul>
 <p>Importantly, both <code>x</code> and <code>y</code> must contain <code>POLYGON</code>s or <code>MULTIPOLYGON</code>s and have the same coordinate reference system.</p>
-<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
+<p>There are also two additional arguments - <code>B</code> and <code>precision</code>. If <code>B</code> &gt; 1 then completeness is weighted more strongly than homogeneity, and if <code>B</code> &lt; 1 then homogeneity is weighted more strongly than completeness. By default this value is 1. The <code><a href="../reference/vmeasure_calc.html">vmeasure_calc()</a></code> function calculates intersections of the input geometries internally using <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html" class="external-link">sf::st_intersection()</a></code>, which depends on the coordinates values precision. The <code>precision</code> argument can be used when <code>vmeasure_calc</code> produces an error. For example, <code>precision = 1000</code> rounds values to the third decimal places and <code>precision = 0.001</code> uses values rounded to the nearest 1000.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">regions_vm</span> <span class="op">=</span> <span class="fu"><a href="../reference/vmeasure_calc.html">vmeasure_calc</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">regions1</span>, y <span class="op">=</span> <span class="va">regions2</span>, x_name <span class="op">=</span> <span class="va">z</span>, y_name <span class="op">=</span> <span class="va">z</span><span class="op">)</span>
 <span class="va">regions_vm</span>
@@ -148,9 +144,9 @@
 <p><img src="sabre_files/figure-html/unnamed-chunk-4-1.png" width="45%"><img src="sabre_files/figure-html/unnamed-chunk-4-2.png" width="45%"></p>
 <p>For example, “Map1” shows that three regions have the same inhomogeneity of 0.48. This is due a fact that all of these three have two regions from the second map. The upper left region has a larger inhomogeneity of 0.86 as its area “belongs” to three different regions in the second map. More information about this method and its applications can be found in Nowosad and Stepinski (2018).</p>
 </div>
-<div id="basic-example---mapcurves" class="section level1">
-<h1 class="hasAnchor">
-<a href="#basic-example---mapcurves" class="anchor"></a>Basic example - MapCurves</h1>
+<div class="section level2">
+<h2 id="basic-example---mapcurves">Basic example - MapCurves<a class="anchor" aria-label="anchor" href="#basic-example---mapcurves"></a>
+</h2>
 <p>The <strong>sabre</strong> also allows for calculating a degree of spatial association between regionalizations using the MapCurve method (Hargrove et al., 2006). The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> function also requires four arguments, <code>x</code>, <code>x_name</code>, <code>y</code>, and <code>y_name</code>. It also accepts an additional argument - <code>precision</code>. All of these arguments are explained in the previous section.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">regions_mc</span> <span class="op">=</span> <span class="fu"><a href="../reference/mapcurves_calc.html">mapcurves_calc</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">regions1</span>, y <span class="op">=</span> <span class="va">regions2</span>, x_name <span class="op">=</span> <span class="va">z</span>, y_name <span class="op">=</span> <span class="va">z</span><span class="op">)</span>
@@ -165,11 +161,11 @@
 <span class="co">#&gt;  $map2 - the second map</span></code></pre></div>
 <p>The <code><a href="../reference/mapcurves_calc.html">mapcurves_calc()</a></code> returns a list with a value of the goodness of fit (GOF), the map used as a reference, and two <code>sf</code> objects with preprocessed input maps - <code>$map1</code> and <code>$map2</code>. Read Hargrove et al. (2006) to learn more about this method.</p>
 </div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
-<li>Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association between regionalizations using the information-theoretical V-measure.” International Journal of Geographical Information Science (2018). <a href="https://doi.org/10.1080/13658816.2018.1511794" class="uri">https://doi.org/10.1080/13658816.2018.1511794</a>
+<li>Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association between regionalizations using the information-theoretical V-measure.” International Journal of Geographical Information Science (2018). <a href="https://doi.org/10.1080/13658816.2018.1511794" class="external-link uri">https://doi.org/10.1080/13658816.2018.1511794</a>
 </li>
 <li>Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional entropy-based external cluster evaluation measure.” Proceedings of the 2007 joint conference on empirical methods in natural language processing and computational natural language learning (EMNLP-CoNLL). 2007.</li>
 <li>Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg. “Mapcurves: a quantitative method for comparing categorical maps.” Journal of Geographical Systems 8.2 (2006): 187.</li>
@@ -188,11 +184,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jakub Nowosad, Tomasz Stepinski.</p>
+  <p></p>
+<p>Developed by Jakub Nowosad, Tomasz Stepinski.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
@@ -200,6 +198,8 @@
 
   
 
+
+  
 
   </body>
 </html>
