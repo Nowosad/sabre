@@ -1,5 +1,5 @@
 Package: sabre
-Version: 0.4.1
+Version: 0.4.2
 Title: Spatial Association Between Regionalizations 
 Description: Calculates a degree of spatial association between regionalizations 
     or categorical maps using the information-theoretical V-measure 
@@ -25,7 +25,7 @@ Suggests:
     rmarkdown,
     methods
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Depends: R (>= 3.3.0)
 Imports: 
     dplyr,

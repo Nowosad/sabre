@@ -6,13 +6,9 @@
 \alias{sabre-package}
 \title{sabre: Spatial Association Between Regionalizations}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Calculates a degree of spatial association between regionalizations 
-    or categorical maps using the information-theoretical V-measure 
-    (Nowosad and Stepinski (2018) <doi:10.1080/13658816.2018.1511794>). It also
-    offers an R implementation of the MapCurve method 
-    (Hargrove et al. (2006) <doi:10.1007/s10109-006-0025-x>).
+Calculates a degree of spatial association between regionalizations or categorical maps using the information-theoretical V-measure (Nowosad and Stepinski (2018) \doi{10.1080/13658816.2018.1511794}). It also offers an R implementation of the MapCurve method (Hargrove et al. (2006) \doi{10.1007/s10109-006-0025-x}).
 }
 \seealso{
 Useful links:

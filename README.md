@@ -100,7 +100,7 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 More examples can be found in [the package
 vignette](https://nowosad.github.io/sabre/articles/sabre.html) and in
 [the sabre: or how to compare two maps? blog
-post](https://nowosad.github.io/post/sabre-bp/).
+post](https://jakubnowosad.com/posts/2018-09-10-sabre-bp/).
 
 Additionally, examples presented in the [Spatial association between
 regionalizations using the information-theoretical
