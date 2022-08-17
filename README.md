@@ -6,7 +6,7 @@
 [![CRAN
 status](http://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre)
 [![R-CMD-check](https://github.com/Nowosad/sabre/workflows/R-CMD-check/badge.svg)](https://github.com/Nowosad/sabre/actions)
-[![codecov](https://codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://codecov.io/gh/Nowosad/sabre)
+[![codecov](https://app.codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Nowosad/sabre)
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/package=sabre)
 
@@ -98,15 +98,11 @@ plot(regions_vm$map2["rih"], main = "Map2: rih")
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
 
 More examples can be found in [the package
-vignette](https://nowosad.github.io/sabre/articles/sabre.html) and in
+vignette](https://jakubnowosad.com/sabre/articles/sabre.html) and in
 [the sabre: or how to compare two maps? blog
 post](https://jakubnowosad.com/posts/2018-09-10-sabre-bp/).
 
-Additionally, examples presented in the [Spatial association between
-regionalizations using the information-theoretical
-V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be
-reproduced using data available at
-<http://sil.uc.edu/index.php?id=data-1#vmeasure>.
+<!-- Additionally, examples presented in the [Spatial association between regionalizations using the information-theoretical V-measure](https://doi.org/10.1080/13658816.2018.1511794) article can be reproduced using data available at http://sil.uc.edu/index.php?id=data-1#vmeasure. -->
 
 ## Logo
 
