@@ -4,11 +4,11 @@
 # sabre <img src="man/figures/logo.png" align="right" width="150" />
 
 [![CRAN
-status](http://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre)
+status](https://www.r-pkg.org/badges/version/sabre)](https://cran.r-project.org/package=sabre)
 [![R-CMD-check](https://github.com/Nowosad/sabre/workflows/R-CMD-check/badge.svg)](https://github.com/Nowosad/sabre/actions)
 [![codecov](https://app.codecov.io/gh/Nowosad/sabre/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Nowosad/sabre)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/package=sabre)
+downloads](https://cranlogs.r-pkg.org/badges/sabre)](https://cran.r-project.org/package=sabre)
 
 The **sabre** (**S**patial **A**ssociation **B**etween
 **RE**gionalizations) is an R package for calculating a degree of
