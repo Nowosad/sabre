@@ -16,8 +16,8 @@ spatial association between regionalizations or categorical maps. This
 package offers support for `sf`, `RasterLayer`, `SpatRaster`, and
 `stars` spatial objects, and the following methods:
 
--   the V-measure method (Nowosad and Stepinski, 2018)
--   the MapCurve method (Hargrove et al., 2006)
+- the V-measure method (Nowosad and Stepinski, 2018)
+- the MapCurve method (Hargrove et al., 2006)
 
 ## Installation
 
@@ -58,12 +58,12 @@ spatial association between regionalizations or categorical maps using
 the information-theoretical V-measure. It requires, at least, four
 arguments:
 
--   `x` - an `sf` object containing the first regionalization
--   `x_name` - a name of the column with regions names of the first
-    regionalization
--   `y` - an `sf` object containing the second regionalization
--   `y_name` - a name of the column with regions names of the second
-    regionalization
+- `x` - an `sf` object containing the first regionalization
+- `x_name` - a name of the column with regions names of the first
+  regionalization
+- `y` - an `sf` object containing the second regionalization
+- `y_name` - a name of the column with regions names of the second
+  regionalization
 
 ``` r
 regions_vm = vmeasure_calc(x = regions1, y = regions2, x_name = z, y_name = z)
@@ -116,15 +116,15 @@ Creative Agency</a> from
 
 ## References
 
--   Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association
-    between regionalizations using the information-theoretical
-    V-measure.” International Journal of Geographical Information
-    Science (2018). <https://doi.org/10.1080/13658816.2018.1511794>
--   Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional
-    entropy-based external cluster evaluation measure.” Proceedings of
-    the 2007 joint conference on empirical methods in natural language
-    processing and computational natural language learning
-    (EMNLP-CoNLL). 2007.
--   Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
-    “Mapcurves: a quantitative method for comparing categorical maps.”
-    Journal of Geographical Systems 8.2 (2006): 187.
+- Nowosad, Jakub, and Tomasz F. Stepinski. “Spatial association between
+  regionalizations using the information-theoretical V-measure.”
+  International Journal of Geographical Information Science (2018).
+  <https://doi.org/10.1080/13658816.2018.1511794>
+- Rosenberg, Andrew, and Julia Hirschberg. “V-measure: A conditional
+  entropy-based external cluster evaluation measure.” Proceedings of the
+  2007 joint conference on empirical methods in natural language
+  processing and computational natural language learning (EMNLP-CoNLL).
+  2007.
+- Hargrove, William W., Forrest M. Hoffman, and Paul F. Hessburg.
+  “Mapcurves: a quantitative method for comparing categorical maps.”
+  Journal of Geographical Systems 8.2 (2006): 187.
